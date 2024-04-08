@@ -1,0 +1,4911 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .pair {
+            display: flex;
+            flex-direction: column;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin-bottom: 10px;
+            overflow: auto;
+            width: 45%;
+        }
+
+        .output {
+            background-color: #eaeaea;
+        }
+
+        pre {
+            white-space: pre-wrap;
+        }
+
+        .code-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container"></div>
+
+    <script>
+        const codes = [
+            {
+                name: '1. Enter the Matrix of rows and columns entered by the user and print in matrix format',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+    int matrix[rows][cols];
+    cout << "Enter elements of matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            cout << "Enter element [" << i << "][" << j << "]: ";
+            cin >> matrix[i][j];
+        }
+    }
+    cout << "Matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            cout << matrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+    getch();
+}`,
+                output: `Enter number of rows: 2
+Enter number of columns: 3
+Enter elements of matrix:
+Enter element [0][0]: 1
+Enter element [0][1]: 2
+Enter element [0][2]: 3
+Enter element [1][0]: 4
+Enter element [1][1]: 5
+Enter element [1][2]: 6
+Matrix:
+1    2    3
+4    5    6
+`,
+            },
+            {
+                name: '2.Program to Add Two Matrices ',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter rows and columns: ";
+    cin >> rows >> cols;
+
+    int matrix1[10][10], matrix2[10][10], result[10][10];
+
+    cout << "Enter elements of first matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix1[i][j];
+
+    cout << "Enter elements of second matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix2[i][j];
+
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            result[i][j] = matrix1[i][j] + matrix2[i][j];
+
+    cout << "Resultant Matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            cout << result[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    getch();
+}`,
+                output: `Enter rows and columns: 2 3
+Enter elements of first matrix:
+1 2 3
+4 5 6
+Enter elements of second matrix:
+7 8 9
+1 2 3
+Resultant Matrix:
+8 10 12
+5 7 9
+`,
+            },
+            {
+                name: '3. Program to Multiply Two Matrices',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows1, cols1, rows2, cols2;
+    cout << "Enter rows and columns for first matrix: ";
+    cin >> rows1 >> cols1;
+    cout << "Enter rows and columns for second matrix: ";
+    cin >> rows2 >> cols2;
+
+    if (cols1 != rows2)
+    {
+        cout << "Matrices cannot be multiplied.";
+        getch();
+        return;
+    }
+
+    int matrix1[10][10], matrix2[10][10], result[10][10];
+
+    cout << "Enter elements of first matrix:" << endl;
+    for (int i = 0; i < rows1; i++)
+        for (int j = 0; j < cols1; j++)
+            cin >> matrix1[i][j];
+
+    cout << "Enter elements of second matrix:" << endl;
+    for (int i = 0; i < rows2; i++)
+        for (int j = 0; j < cols2; j++)
+            cin >> matrix2[i][j];
+
+    for (int i = 0; i < rows1; i++)
+        for (int j = 0; j < cols2; j++)
+        {
+            result[i][j] = 0;
+            for (int k = 0; k < cols1; k++)
+                result[i][j] += matrix1[i][k] * matrix2[k][j];
+        }
+
+    cout << "Resultant Matrix:" << endl;
+    for (int i = 0; i < rows1; i++)
+    {
+        for (int j = 0; j < cols2; j++)
+            cout << result[i][j] << " ";
+        cout << endl;
+    }
+
+    getch();
+}`,
+                output: `Enter rows and columns for first matrix: 2 3
+Enter rows and columns for second matrix: 3 2
+Enter elements of first matrix:
+1 2 3
+4 5 6
+Enter elements of second matrix:
+7 8
+9 10
+11 12
+Resultant Matrix:
+58 64
+139 154
+`,
+            },{
+                name: '4. Program to subtract the two matrices',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter rows and columns: ";
+    cin >> rows >> cols;
+
+    int matrix1[10][10], matrix2[10][10], result[10][10];
+
+    cout << "Enter elements of first matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix1[i][j];
+
+    cout << "Enter elements of second matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix2[i][j];
+
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            result[i][j] = matrix1[i][j] - matrix2[i][j];
+
+    cout << "Resultant Matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+            cout << result[i][j] << " ";
+        cout << endl;
+    }
+
+    getch();
+}`,
+                output: `Enter rows and columns: 2 2
+Enter elements of first matrix:
+1 2
+3 4
+Enter elements of second matrix:
+1 1
+1 1
+Resultant Matrix:
+0 1
+2 3
+`,
+            },{
+                name: '5. Program to determine whether two matrices are equal',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter rows and columns: ";
+    cin >> rows >> cols;
+
+    int matrix1[10][10], matrix2[10][10];
+    bool isEqual = true;
+
+    cout << "Enter elements of first matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix1[i][j];
+
+    cout << "Enter elements of second matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix2[i][j];
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            if (matrix1[i][j] != matrix2[i][j])
+            {
+                isEqual = false;
+                break;
+            }
+        }
+        if (!isEqual)
+            break;
+    }
+
+    if (isEqual)
+        cout << "Matrices are equal." << endl;
+    else
+        cout << "Matrices are not equal." << endl;
+
+    getch();
+}
+`,
+                output: `Enter rows and columns: 2 2
+Enter elements of first matrix:
+1 2
+3 4
+Enter elements of second matrix:
+1 2
+3 4
+Matrices are equal.
+`,
+            },{
+                name: '6. Program to display the lower triangular matrix',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter number of rows and columns: ";
+    cin >> rows >> cols;
+
+    int matrix[10][10];
+
+    cout << "Enter elements of the matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix[i][j];
+
+    cout << "Lower Triangular Matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            if (j <= i)
+                cout << matrix[i][j] << "\t";
+            else
+                cout << "0\t";
+        }
+        cout << endl;
+    }
+
+    getch();
+}`,
+                output: `Enter number of rows and columns: 3 3
+Enter elements of the matrix:
+1 2 3
+4 5 6
+7 8 9
+Lower Triangular Matrix:
+1       0       0
+4       5       0
+7       8       9
+`,
+            },{
+                name: '7. Program to display the upper triangular matrix',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter number of rows and columns: ";
+    cin >> rows >> cols;
+
+    int matrix[10][10];
+
+    cout << "Enter elements of the matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix[i][j];
+
+    cout << "Upper Triangular Matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            if (j >= i)
+                cout << matrix[i][j] << "\t";
+            else
+                cout << "0\t";
+        }
+        cout << endl;
+    }
+
+    getch();
+}`,
+                output: `Enter number of rows and columns: 3 3
+Enter elements of the matrix:
+1 2 3
+4 5 6
+7 8 9
+Upper Triangular Matrix:
+1       2       3
+0       5       6
+0       0       9
+t`,
+            },{
+                name: '8. Program to find the frequency of odd & even numbers in the given matrix',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter number of rows and columns: ";
+    cin >> rows >> cols;
+
+    int matrix[10][10];
+
+    cout << "Enter elements of the matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix[i][j];
+
+    int evenCount = 0, oddCount = 0;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            if (matrix[i][j] % 2 == 0)
+                evenCount++;
+            else
+                oddCount++;
+
+    cout << "Frequency of even numbers: " << evenCount << endl;
+    cout << "Frequency of odd numbers: " << oddCount << endl;
+
+    getch();
+}`,
+                output: `Enter number of rows and columns: 2 2
+Enter elements of the matrix:
+1 2
+3 4
+Frequency of even numbers: 2
+Frequency of odd numbers: 2
+`,
+            },{
+                name: '9. Program to find the sum of each row and each column of a matrix',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter number of rows and columns: ";
+    cin >> rows >> cols;
+
+    int matrix[10][10];
+
+    cout << "Enter elements of the matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix[i][j];
+
+    cout << "Sum of each row:" << endl;
+    for (int i = 0; i < rows; i++)
+    {
+        int rowSum = 0;
+        for (int j = 0; j < cols; j++)
+            rowSum += matrix[i][j];
+        cout << "Row " << i + 1 << ": " << rowSum << endl;
+    }
+
+    cout << "Sum of each column:" << endl;
+    for (int j = 0; j < cols; j++)
+    {
+        int colSum = 0;
+        for (int i = 0; i < rows; i++)
+            colSum += matrix[i][j];
+        cout << "Column " << j + 1 << ": " << colSum << endl;
+    }
+
+    getch();
+}`,
+                output: `Enter number of rows and columns: 2 3
+Enter elements of the matrix:
+1 2 3
+4 5 6
+Sum of each row:
+Row 1: 6
+Row 2: 15
+Sum of each column:
+Column 1: 5
+Column 2: 7
+Column 3: 9
+`,
+            },{
+                name: '10. Program to determine whether a given matrix is an identity matrix',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter number of rows and columns: ";
+    cin >> rows >> cols;
+
+    int matrix[10][10];
+
+    cout << "Enter elements of the matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix[i][j];
+
+    bool isIdentity = true;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            if (i == j && matrix[i][j] != 1)
+            {
+                isIdentity = false;
+                break;
+            }
+            else if (i != j && matrix[i][j] != 0)
+            {
+                isIdentity = false;
+                break;
+            }
+        }
+        if (!isIdentity)
+            break;
+    }
+
+    if (isIdentity)
+        cout << "The matrix is an identity matrix." << endl;
+    else
+        cout << "The matrix is not an identity matrix." << endl;
+
+    getch();
+}`,
+                output: `Enter number of rows and columns: 3 3
+Enter elements of the matrix:
+1 0 0
+0 1 0
+0 0 1
+The matrix is an identity matrix.
+`,
+            },
+            {
+                name: '11. Program to Transpose matrix',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter number of rows and columns: ";
+    cin >> rows >> cols;
+
+    int matrix[10][10];
+
+    cout << "Enter elements of the matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix[i][j];
+
+    int transpose[10][10];
+    for (int i = 0; i < cols; i++)
+        for (int j = 0; j < rows; j++)
+            transpose[i][j] = matrix[j][i];
+
+    cout << "Transpose of the matrix:" << endl;
+    for (int i = 0; i < cols; i++)
+    {
+        for (int j = 0; j < rows; j++)
+            cout << transpose[i][j] << "\t";
+        cout << endl;
+    }
+
+    getch();
+}`,
+                output: `Enter number of rows and columns: 2 3
+Enter elements of the matrix:
+1 2 3
+4 5 6
+Transpose of the matrix:
+1       4
+2       5
+3       6
+`,
+            },{
+                name: '12. Program to determine whether a given matrix is a sparse matrix',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main()
+{
+    int rows, cols;
+    cout << "Enter number of rows and columns: ";
+    cin >> rows >> cols;
+
+    int matrix[10][10];
+
+    cout << "Enter elements of the matrix:" << endl;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            cin >> matrix[i][j];
+
+    int zeroCount = 0;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            if (matrix[i][j] == 0)
+                zeroCount++;
+
+    if (zeroCount > (rows * cols) / 2)
+        cout << "The matrix is a sparse matrix." << endl;
+    else
+        cout << "The matrix is not a sparse matrix." << endl;
+
+    getch();
+}`,
+                output: `Enter number of rows and columns: 3 3
+Enter elements of the matrix:
+1 0 0
+0 0 0
+0 0 1
+The matrix is a sparse matrix.
+`,
+            },{
+                name: '1. Write a C++ program to print ‘Hello World!’ on screen',
+                code: `#include <conio.h>
+#include <stdio.h>
+
+int main() {
+    clrscr();
+    cprintf("Hello World!\n");
+    return 0;
+}`,
+                output: `Hello world!`,
+            },{
+                name: '2. Write a C++ program to print the sum of two numbers',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main() {
+    int num1, num2, sum;
+    
+    clrscr();
+    
+    cout << "Enter first number: ";
+    cin >> num1;
+    
+    cout << "Enter second number: ";
+    cin >> num2;
+    
+    sum = num1 + num2;
+    
+    cout << "Sum: " << sum << endl;
+    
+    getch();
+}`,
+                output: `Enter first number: 5
+Enter second number: 7
+Sum: 12
+`,
+            },{
+                name: '3. Write a C++ program that takes two numbers and display the product of two numbers',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main() {
+    int num1, num2, product;
+    
+    clrscr();
+    
+    cout << "Enter first number: ";
+    cin >> num1;
+    
+    cout << "Enter second number: ";
+    cin >> num2;
+    
+    product = num1 * num2;
+    
+    cout << "Product: " << product << endl;
+    
+    getch();
+}`,
+                output: `Enter first number: 5
+Enter second number: 7
+Product: 35
+`,
+            },{
+                name: '4. Write a C++ program to print the sum, multiply, subtract, divide and remainder of two numbers',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main() {
+    int num1, num2;
+    
+    clrscr();
+    
+    cout << "Enter first number: ";
+    cin >> num1;
+    
+    cout << "Enter second number: ";
+    cin >> num2;
+    
+    cout << "Sum: " << num1 + num2 << endl;
+    cout << "Product: " << num1 * num2 << endl;
+    cout << "Difference: " << num1 - num2 << endl;
+    
+    if (num2 != 0) {
+        cout << "Division: " << num1 / num2 << endl;
+        cout << "Remainder: " << num1 % num2 << endl;
+    } else {
+        cout << "Cannot divide by zero." << endl;
+    }
+    
+    getch();
+}#include <iostream.h>
+#include <conio.h>
+
+void main() {
+    int num1, num2;
+    
+    clrscr();
+    
+    cout << "Enter first number: ";
+    cin >> num1;
+    
+    cout << "Enter second number: ";
+    cin >> num2;
+    
+    cout << "Sum: " << num1 + num2 << endl;
+    cout << "Product: " << num1 * num2 << endl;
+    cout << "Difference: " << num1 - num2 << endl;
+    
+    if (num2 != 0) {
+        cout << "Division: " << num1 / num2 << endl;
+        cout << "Remainder: " << num1 % num2 << endl;
+    } else {
+        cout << "Cannot divide by zero." << endl;
+    }
+    
+    getch();
+}`,
+                output: `Enter first number: 10
+Enter second number: 3
+Sum: 13
+Product: 30
+Difference: 7
+Division: 3
+Remainder: 1
+`,
+            },{
+                name: '5. Write a C++ program that takes five numbers as input to calculate and print the average of the numbers',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main() {
+    int num1, num2, num3, num4, num5;
+    float average;
+    
+    clrscr();
+    
+    cout << "Enter five numbers: ";
+    cin >> num1 >> num2 >> num3 >> num4 >> num5;
+    
+    average = (num1 + num2 + num3 + num4 + num5) / 5.0;
+    
+    cout << "Average: " << average << endl;
+    
+    getch();
+}`,
+                output: `Enter five numbers: 10 20 30 40 50
+Average: 30
+`,
+            },{
+                name: '6. Write a C++ program to swap two variables',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main() {
+    int a, b, temp;
+    
+    clrscr();
+    
+    cout << "Enter value of a: ";
+    cin >> a;
+    
+    cout << "Enter value of b: ";
+    cin >> b;
+    
+    cout << "Before swapping, a = " << a << " and b = " << b << endl;
+    
+    temp = a;
+    a = b;
+    b = temp;
+    
+    cout << "After swapping, a = " << a << " and b = " << b << endl;
+    
+    getch();
+}Second code snippet`,
+                output: `Enter value of a: 10
+Enter value of b: 20
+Before swapping, a = 10 and b = 20
+After swapping, a = 20 and b = 10
+`,
+            },{
+                name: '7. Write a C++ program to convert a decimal number to binary numbers',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main() {
+    int decimalNum, binaryNum[32], i = 0;
+    
+    clrscr();
+    
+    cout << "Enter a decimal number: ";
+    cin >> decimalNum;
+    
+    while (decimalNum > 0) {
+        binaryNum[i] = decimalNum % 2;
+        decimalNum /= 2;
+        i++;
+    }
+    
+    cout << "Binary equivalent: ";
+    for (int j = i - 1; j >= 0; j--) {
+        cout << binaryNum[j];
+    }
+    
+    getch();
+}`,
+                output: `Enter a decimal number: 10
+Binary equivalent: 1010
+Output for second code snippet`,
+            },{
+                name: '8. Write a C++ program to convert a binary number to decimal number',
+                code: `#include <iostream.h>
+#include <conio.h>
+#include <math.h>
+
+void main() {
+    long long binaryNum;
+    int decimalNum = 0, i = 0, remainder;
+    
+    clrscr();
+    
+    cout << "Enter a binary number: ";
+    cin >> binaryNum;
+    
+    while (binaryNum != 0) {
+        remainder = binaryNum % 10;
+        binaryNum /= 10;
+        decimalNum += remainder * pow(2, i);
+        i++;
+    }
+    
+    cout << "Decimal equivalent: " << decimalNum << endl;
+    
+    getch();
+}`,
+                output: `Enter a binary number: 1010
+Decimal equivalent: 10`,
+            },{
+                name: '9. Write a C++ program to check whether C++ is installed on your computer or not',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main() {
+    clrscr();
+    
+    cout << "C++ is installed on your computer." << endl;
+    
+    getch();
+}t`,
+                output: `C++ is installed on your computer.`,
+            },{
+                name: '10. Write a C++ program and compute the sum of the digits of an integers',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main() {
+    int num, sum = 0, digit;
+    
+    clrscr();
+    
+    cout << "Enter an integer: ";
+    cin >> num;
+    
+    while (num != 0) {
+        digit = num % 10;
+        sum += digit;
+        num /= 10;
+    }
+    
+    cout << "Sum of digits: " << sum << endl;
+    
+    getch();
+}Second code snippet`,
+                output: `Enter an integer: 12345
+Sum of digits: 15`,
+            },{
+                name: '11. Write a C++ program to compare two numbers',
+                code: `#include <iostream.h>
+#include <conio.h>
+
+void main() {
+    int num1, num2;
+    
+    clrscr();
+    
+    cout << "Enter first number: ";
+    cin >> num1;
+    
+    cout << "Enter second number: ";
+    cin >> num2;
+    
+    if (num1 == num2) {
+        cout << "Both numbers are equal." << endl;
+    } else if (num1 < num2) {
+        cout << "First number is smaller than second number." << endl;
+    } else {
+        cout << "First number is greater than second number." << endl;
+    }
+    
+    getch();
+}
+`,
+                output: `Enter first number: 10
+Enter second number: 5
+First number is greater than second number.`,
+            },{
+                name: '12. Write a C++ program to count the letters, spaces, numbers and other characters of an input string',
+                code: `#include <iostream.h>
+#include <conio.h>
+#include <ctype.h>
+
+void main() {
+    char str[100];
+    int letters = 0, spaces = 0, numbers = 0, others = 0, i = 0;
+
+    clrscr();
+
+    cout << "Enter a string: ";
+    gets(str);
+
+    while (str[i] != '\0') {
+        if (isalpha(str[i])) {
+            letters++;
+        } else if (isspace(str[i])) {
+            spaces++;
+        } else if (isdigit(str[i])) {
+            numbers++;
+        } else {
+            others++;
+        }
+        i++;
+    }
+
+    cout << "Letters: " << letters << endl;
+    cout << "Spaces: " << spaces << endl;
+    cout << "Numbers: " << numbers << endl;
+    cout << "Other characters: " << others << endl;
+
+    getch();
+}
+`,
+                output: `Enter a string: Hello, 123 World!
+Letters: 10
+Spaces: 2
+Numbers: 3
+Other characters: 2
+`,
+            },{
+                name: '13. Write a C++ program to print the ascii value of a given character',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    char ch;
+    cout << "Enter a character: ";
+    cin >> ch;
+    cout << "ASCII value of " << ch << " is " << int(ch) << endl;
+    return 0;
+}`,
+                output: `Enter a character: A
+ASCII value of A is 65`,
+            },{
+                name: 'Write a C++ program that accepts an integer (n) and computes the value of n+nn+nnn',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n, nn, nnn;
+    cout << "Enter an integer: ";
+    cin >> n;
+
+    nn = n * 11;  // nn = n + n*10
+    nnn = n * 111; // nnn = n + n*10 + n*100
+
+    int result = n + nn + nnn;
+    cout << "Result: " << result << endl;
+
+    return 0;
+}
+`,
+                output: `Enter an integer: 5
+Result: 615`,
+            },{
+                name: '15. Write a C++ program to display the system time',
+                code: `#include <iostream>
+#include <ctime>
+using namespace std;
+
+int main() {
+    // Get the current time
+    time_t now = time(0);
+    
+    // Convert now to string form
+    char* dt = ctime(&now);
+
+    // Display the current time
+    cout << "The current time is: " << dt << endl;
+
+    return 0;
+}
+`,
+                output: `The current time is: Fri Mar 06 14:53:24 2024`,
+            },{
+                name: '16. Write a C++ program to print the odd numbers from 1 to 20',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Odd numbers from 1 to 20 are:" << endl;
+    for (int i = 1; i <= 20; i += 2) {
+        cout << i << " ";
+    }
+    cout << endl;
+    return 0;
+}`,
+                output: `Odd numbers from 1 to 20 are:
+1 3 5 7 9 11 13 15 17 19`,
+            },{
+                name: '17. Write a C++ program to print the even numbers from 1 to 20',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Even numbers from 1 to 20 are:" << endl;
+    for (int i = 2; i <= 20; i += 2) {
+        cout << i << " ";
+    }
+    cout << endl;
+    return 0;
+}`,
+                output: `Even numbers from 1 to 20 are:
+2 4 6 8 10 12 14 16 18 20`,
+            },{
+                name: '18. Write a C++ program to convert a string to an integer',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    string str;
+    cout << "Enter a string: ";
+    cin >> str;
+
+    try {
+        int num = stoi(str);
+        cout << "The integer value of the string is: " << num << endl;
+    } catch (const std::invalid_argument& ia) {
+        cout << "Invalid argument: " << ia.what() << endl;
+    } catch (const std::out_of_range& oor) {
+        cout << "Out of range error: " << oor.what() << endl;
+    }
+
+    return 0;
+}
+`,
+                output: `Enter a string: 123
+The integer value of the string is: 123`,
+            },{
+                name: '19. Write a C++ program to convert seconds to hour, minute and seconds',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int seconds;
+    cout << "Enter the number of seconds: ";
+    cin >> seconds;
+
+    int hours = seconds / 3600;
+    int minutes = (seconds % 3600) / 60;
+    int remainingSeconds = seconds % 60;
+
+    cout << "Hours: " << hours << endl;
+    cout << "Minutes: " << minutes << endl;
+    cout << "Seconds: " << remainingSeconds << endl;
+
+    return 0;
+}
+`,
+                output: `Enter the number of seconds: 3665
+Hours: 1
+Minutes: 1
+Seconds: 5`,
+            },{
+                name: '20. Write a C++ program to compute the sum of the first 100 prime numbers',
+                code: `#include <iostream>
+using namespace std;
+
+bool isPrime(int num) {
+    if (num <= 1) {
+        return false;
+    }
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    int count = 0;
+    long long sum = 0;
+    int num = 2;  // Start checking from 2
+
+    while (count < 100) {
+        if (isPrime(num)) {
+            sum += num;
+            count++;
+        }
+        num++;
+    }
+
+    cout << "Sum of the first 100 prime numbers is: " << sum << endl;
+
+    return 0;
+}
+`,
+                output: `Sum of the first 100 prime numbers is: 24133`,
+            },{
+                name: '21. Write a C++ program to compute the square root of an given integer',
+                code: `#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int num;
+    cout << "Enter an integer: ";
+    cin >> num;
+
+    if (num < 0) {
+        cout << "Square root is not real." << endl;
+    } else {
+        double squareRoot = sqrt(num);
+        cout << "Square root of " << num << " is: " << squareRoot << endl;
+    }
+
+    return 0;
+}
+`,
+                output: `Enter an integer: 25
+Square root of 25 is: 5`,
+            },{
+                name: '22. Write a C++ program to check if a positive number is a palindrome or not',
+                code: `#include <iostream>
+using namespace std;
+
+bool isPalindrome(int num) {
+    int reversedNum = 0, originalNum = num;
+    while (num > 0) {
+        int digit = num % 10;
+        reversedNum = reversedNum * 10 + digit;
+        num /= 10;
+    }
+    return originalNum == reversedNum;
+}
+
+int main() {
+    int num;
+    cout << "Enter a positive number: ";
+    cin >> num;
+
+    if (num <= 0) {
+        cout << "Please enter a positive number." << endl;
+    } else {
+        if (isPalindrome(num)) {
+            cout << num << " is a palindrome." << endl;
+        } else {
+            cout << num << " is not a palindrome." << endl;
+        }
+    }
+
+    return 0;
+}
+`,
+                output: `Enter a positive number: 12321
+12321 is a palindrome.`,
+            },{
+                name: '23. Write a C++ program to add two numbers without using any arithmetic operators',
+                code: `#include <iostream>
+using namespace std;
+
+int add(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    int sum = a ^ b;  // XOR operation gives the sum without carry
+    int carry = (a & b) << 1;  // AND operation gives the carry, which is shifted left
+    return add(sum, carry);  // Recursively add sum and carry until there is no carry
+}
+
+int main() {
+    int num1, num2;
+    cout << "Enter two numbers: ";
+    cin >> num1 >> num2;
+
+    cout << "Sum: " << add(num1, num2) << endl;
+
+    return 0;
+}
+`,
+                output: `Enter two numbers: 5 7
+Sum: 12`,
+            },{
+                name: '24. Write a C++ program to add all the digits of a given positive integer',
+                code: `#include <iostream>
+using namespace std;
+
+int sumOfDigits(int num) {
+    int sum = 0;
+    while (num > 0) {
+        sum += num % 10;  // Add the last digit to the sum
+        num /= 10;        // Remove the last digit from the number
+    }
+    return sum;
+}
+
+int main() {
+    int num;
+    cout << "Enter a positive integer: ";
+    cin >> num;
+
+    if (num <= 0) {
+        cout << "Please enter a positive integer." << endl;
+    } else {
+        cout << "Sum of digits: " << sumOfDigits(num) << endl;
+    }
+
+    return 0;
+}
+`,
+                output: `Enter a positive integer: 12345
+Sum of digits: 15`,
+            },{
+                name: '25. C++ program to find area of circle',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float radius, area;
+
+    cout << "Enter the radius of the circle: ";
+    cin >> radius;
+
+    area = 3.14159 * radius * radius;
+
+    cout << "The area of the circle is: " << area << endl;
+
+    return 0;
+}
+`,
+                output: `Enter the radius of the circle: 5
+The area of the circle is: 78.5398`,
+            },{
+                name: '26. C++ Program to find area of rectangle',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float length, width, area;
+
+    cout << "Enter the length of the rectangle: ";
+    cin >> length;
+
+    cout << "Enter the width of the rectangle: ";
+    cin >> width;
+
+    area = length * width;
+
+    cout << "The area of the rectangle is: " << area << endl;
+
+    return 0;
+}`,
+                output: `Enter the length of the rectangle: 10
+Enter the width of the rectangle: 5
+The area of the rectangle is: 50`,
+            },{
+                name: '27. C++ Program to find area of triangle',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float base, height, area;
+
+    cout << "Enter the base of the triangle: ";
+    cin >> base;
+
+    cout << "Enter the height of the triangle: ";
+    cin >> height;
+
+    area = 0.5 * base * height;
+
+    cout << "The area of the triangle is: " << area << endl;
+
+    return 0;
+}`,
+                output: `Enter the base of the triangle: 6
+Enter the height of the triangle: 8
+The area of the triangle is: 24`,
+            },{
+                name: '28. C++ Program to find area of equilateral triangle',
+                code: `#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    float side, area;
+
+    cout << "Enter the side length of the equilateral triangle: ";
+    cin >> side;
+
+    area = (sqrt(3) / 4) * side * side;
+
+    cout << "The area of the equilateral triangle is: " << area << endl;
+
+    return 0;
+}`,
+                output: `Enter the side length of the equilateral triangle: 5
+The area of the equilateral triangle is: 10.8253`,
+            },{
+                name: '29. C++ Program to find area of rhombus',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float diagonal1, diagonal2, area;
+
+    cout << "Enter the length of first diagonal: ";
+    cin >> diagonal1;
+
+    cout << "Enter the length of second diagonal: ";
+    cin >> diagonal2;
+
+    area = 0.5 * diagonal1 * diagonal2;
+
+    cout << "The area of the rhombus is: " << area << endl;
+
+    return 0;
+}`,
+                output: `Enter the length of first diagonal: 8
+Enter the length of second diagonal: 6
+The area of the rhombus is: 24`,
+            },{
+                name: '30. C++ Program to find area of parallelogram',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float base, height, area;
+
+    cout << "Enter the base of the parallelogram: ";
+    cin >> base;
+
+    cout << "Enter the height of the parallelogram: ";
+    cin >> height;
+
+    area = base * height;
+
+    cout << "The area of the parallelogram is: " << area << endl;
+
+    return 0;
+}`,
+                output: `Enter the base of the parallelogram: 7
+Enter the height of the parallelogram: 10
+The area of the parallelogram is: 70`,
+            },{
+                name: '31. C++ Program to find area of Prism',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float length, width, height, surfaceArea;
+
+    cout << "Enter the length of the prism: ";
+    cin >> length;
+
+    cout << "Enter the width of the prism: ";
+    cin >> width;
+
+    cout << "Enter the height of the prism: ";
+    cin >> height;
+
+    surfaceArea = 2 * (length * width + length * height + width * height);
+
+    cout << "The surface area of the prism is: " << surfaceArea << endl;
+
+    return 0;
+}`,
+                output: `Enter the length of the prism: 4
+Enter the width of the prism: 3
+Enter the height of the prism: 5
+The surface area of the prism is: 94`,
+            },{
+                name: '32. C++ Program to find volume of sphere',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float radius, volume;
+
+    cout << "Enter the radius of the sphere: ";
+    cin >> radius;
+
+    volume = (4.0 / 3.0) * 3.14159 * radius * radius * radius;
+
+    cout << "The volume of the sphere is: " << volume << endl;
+
+    return 0;
+}`,
+                output: `Enter the radius of the sphere: 5
+The volume of the sphere is: 523.599`,
+            },{
+                name: '33. C++ Program to find volume of cylinder',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float radius, height, volume;
+
+    cout << "Enter the radius of the cylinder: ";
+    cin >> radius;
+
+    cout << "Enter the height of the cylinder: ";
+    cin >> height;
+
+    volume = 3.14159 * radius * radius * height;
+
+    cout << "The volume of the cylinder is: " << volume << endl;
+
+    return 0;
+}`,
+                output: `Enter the radius of the cylinder: 4
+Enter the height of the cylinder: 6
+The volume of the cylinder is: 301.592`,
+            },{
+                name: '34. C++ Program to find volume of cuboid',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float length, width, height, volume;
+
+    cout << "Enter the length of the cuboid: ";
+    cin >> length;
+
+    cout << "Enter the width of the cuboid: ";
+    cin >> width;
+
+    cout << "Enter the height of the cuboid: ";
+    cin >> height;
+
+    volume = length * width * height;
+
+    cout << "The volume of the cuboid is: " << volume << endl;
+
+    return 0;
+}
+`,
+                output: `Enter the length of the cuboid: 5
+Enter the width of the cuboid: 3
+Enter the height of the cuboid: 4
+The volume of the cuboid is: 60`,
+            },{
+                name: '35. C++ Program to find volume of cone',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float radius, height, volume;
+
+    cout << "Enter the radius of the cone: ";
+    cin >> radius;
+
+    cout << "Enter the height of the cone: ";
+    cin >> height;
+
+    volume = (1.0/3) * 3.14159 * radius * radius * height;
+
+    cout << "The volume of the cone is: " << volume << endl;
+
+    return 0;
+}`,
+                output: `Enter the radius of the cone: 4
+Enter the height of the cone: 6
+The volume of the cone is: 100.531`,
+            },{
+                name: '36. C++ program to find surface area of cuboid',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float length, width, height, surfaceArea;
+
+    cout << "Enter the length of the cuboid: ";
+    cin >> length;
+
+    cout << "Enter the width of the cuboid: ";
+    cin >> width;
+
+    cout << "Enter the height of the cuboid: ";
+    cin >> height;
+
+    surfaceArea = 2 * (length * width + width * height + height * length);
+
+    cout << "The surface area of the cuboid is: " << surfaceArea << endl;
+
+    return 0;
+}`,
+                output: `Enter the length of the cuboid: 5
+Enter the width of the cuboid: 3
+Enter the height of the cuboid: 4
+The surface area of the cuboid is: 94`,
+            },{
+                name: '37. C++ program to find surface area of cylinder',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float radius, height, surfaceArea;
+
+    cout << "Enter the radius of the cylinder: ";
+    cin >> radius;
+
+    cout << "Enter the height of the cylinder: ";
+    cin >> height;
+
+    surfaceArea = 2 * 3.14159 * radius * (radius + height);
+
+    cout << "The surface area of the cylinder is: " << surfaceArea << endl;
+
+    return 0;
+}
+`,
+                output: `Enter the radius of the cylinder: 3
+Enter the height of the cylinder: 5
+The surface area of the cylinder is: 150.796`,
+            },{
+                name: '38. C++ program to find surface area of cube',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    float side, surfaceArea;
+
+    cout << "Enter the side length of the cube: ";
+    cin >> side;
+
+    surfaceArea = 6 * side * side;
+
+    cout << "The surface area of the cube is: " << surfaceArea << endl;
+
+    return 0;
+}`,
+                output: `Enter the side length of the cube: 4
+The surface area of the cube is: 96`,
+            },{
+                name: '39. C++ program to calculate average marks',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int numSubjects;
+    float marks, total = 0, average;
+
+    cout << "Enter the number of subjects: ";
+    cin >> numSubjects;
+
+    cout << "Enter the marks of each subject:" << endl;
+    for (int i = 0; i < numSubjects; i++) {
+        cout << "Subject " << i + 1 << ": ";
+        cin >> marks;
+        total += marks;
+    }
+
+    average = total / numSubjects;
+    cout << "Average marks: " << average << endl;
+
+    return 0;
+}
+`,
+                output: `Enter the number of subjects: 4
+Enter the marks of each subject:
+Subject 1: 85
+Subject 2: 90
+Subject 3: 75
+Subject 4: 88
+Average marks: 84.5
+`,
+            },{
+                name: '40. C++ program to check vowel or consonant',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    char ch;
+
+    cout << "Enter a character: ";
+    cin >> ch;
+
+    // Check if the character is a vowel
+    if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+        ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+        cout << ch << " is a vowel." << endl;
+    } else {
+        cout << ch << " is a consonant." << endl;
+    }
+
+    return 0;
+}`,
+                output: `Enter a character: a
+a is a vowel.
+Enter a character: z
+z is a consonant.
+`,
+            },{
+                name: '41. C++ program to sum of N numbers',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n, sum = 0;
+
+    cout << "Enter the value of N: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; ++i) {
+        sum += i;
+    }
+
+    cout << "Sum of the first " << n << " numbers is: " << sum << endl;
+
+    return 0;
+}
+`,
+                output: `Enter the value of N: 5
+Sum of the first 5 numbers is: 15`,
+            },{
+                name: '42. C++ program to find factorial of any number',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    unsigned long long factorial = 1;
+
+    cout << "Enter a positive integer: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; ++i) {
+        factorial *= i;
+    }
+
+    cout << "Factorial of " << n << " = " << factorial;
+
+    return 0;
+}
+`,
+                output: `Enter a positive integer: 5
+Factorial of 5 = 120`,
+            },{
+                name: '43. C++ Program to calculate electricity bill',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int units;
+    double totalBill = 0.0;
+
+    cout << "Enter the number of units consumed: ";
+    cin >> units;
+
+    if (units <= 50) {
+        totalBill = units * 0.50;
+    } else if (units <= 150) {
+        totalBill = 25 + (units - 50) * 0.75;
+    } else if (units <= 250) {
+        totalBill = 100 + (units - 150) * 1.20;
+    } else {
+        totalBill = 220 + (units - 250) * 1.50;
+    }
+
+    cout << "Total electricity bill: " << totalBill << " Rs" << endl;
+
+    return 0;
+}
+`,
+                output: `Enter the number of units consumed: 200
+Total electricity bill: 160 Rs`,
+            },{
+                name: '44. C++ Program To Calculate CGPA Percentage',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int numSubjects;
+    cout << "Enter the number of subjects: ";
+    cin >> numSubjects;
+
+    double totalCredits = 0.0;
+    double totalPoints = 0.0;
+    double grade, credits;
+
+    for (int i = 1; i <= numSubjects; ++i) {
+        cout << "Enter grade for subject " << i << " (in 4.0 scale): ";
+        cin >> grade;
+        cout << "Enter credits for subject " << i << ": ";
+        cin >> credits;
+        totalCredits += credits;
+        totalPoints += grade * credits;
+    }
+
+    double cgpa = totalPoints / totalCredits;
+    double percentage = (cgpa - 0.75) * 10;
+    cout << "CGPA: " << cgpa << endl;
+    cout << "Percentage: " << percentage << "%" << endl;
+
+    return 0;
+}
+`,
+                output: `Subject 1: Grade - 3.5, Credits - 3
+Subject 2: Grade - 4.0, Credits - 4
+Subject 3: Grade - 3.0, Credits - 3
+Subject 4: Grade - 3.7, Credits - 2
+Subject 5: Grade - 3.2, Credits - 3
+
+CGPA: 3.57
+Percentage: 82.5%
+`,
+            },{
+                name: '45. C++ Program to calculate compound interest',
+                code: `#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double principal, rate, time, compoundInterest;
+
+    cout << "Enter principal amount: ";
+    cin >> principal;
+
+    cout << "Enter annual interest rate (in decimal form): ";
+    cin >> rate;
+
+    cout << "Enter time (in years): ";
+    cin >> time;
+
+    compoundInterest = principal * (pow(1 + rate, time) - 1);
+
+    cout << "Compound Interest = " << compoundInterest << endl;
+
+    return 0;
+}
+`,
+                output: `Enter principal amount: 1000
+Enter annual interest rate (in decimal form): 0.05
+Enter time (in years): 3
+Compound Interest = 157.625
+`,
+            },{
+                name: '46. C++ Program To Calculate Batting Average',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int runs, innings;
+    double average;
+
+    cout << "Enter total runs scored: ";
+    cin >> runs;
+
+    cout << "Enter total innings played: ";
+    cin >> innings;
+
+    average = static_cast<double>(runs) / innings;
+
+    cout << "Batting Average = " << average << endl;
+
+    return 0;
+}
+`,
+                output: `Enter total runs scored: 500
+Enter total innings played: 10
+Batting Average = 50
+`,
+            },{
+                name: '47. C++ Program to Calculate Commission Percentage',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    double sales, commissionRate, commission;
+
+    cout << "Enter sales amount: ";
+    cin >> sales;
+
+    cout << "Enter commission rate (%): ";
+    cin >> commissionRate;
+
+    commission = (commissionRate / 100) * sales;
+
+    cout << "Commission: " << commission << endl;
+
+    return 0;
+}
+`,
+                output: `Enter sales amount: 5000
+Enter commission rate (%): 10
+Commission: 500
+`,
+            },{
+                name: '48. C++ Program To Find Distance Between Two Points',
+                code: `#include <iostream>
+#include <cmath>
+using namespace std;
+
+struct Point {
+    double x, y;
+};
+
+double distance(Point p1, Point p2) {
+    return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
+}
+
+int main() {
+    Point p1, p2;
+
+    cout << "Enter coordinates of first point (x y): ";
+    cin >> p1.x >> p1.y;
+
+    cout << "Enter coordinates of second point (x y): ";
+    cin >> p2.x >> p2.y;
+
+    cout << "Distance between the two points: " << distance(p1, p2) << endl;
+
+    return 0;
+}
+`,
+                output: `Enter coordinates of first point (x y): 1 2
+Enter coordinates of second point (x y): 4 6
+Distance between the two points: 5
+`,
+            },{
+                name: '49. C++ Program To Calculate Power Of Number',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int base, exponent;
+    long long result = 1;
+
+    cout << "Enter base number: ";
+    cin >> base;
+
+    cout << "Enter exponent: ";
+    cin >> exponent;
+
+    for (int i = 0; i < exponent; ++i) {
+        result *= base;
+    }
+
+    cout << "Result: " << result << endl;
+    return 0;
+}
+`,
+                output: `Enter base number: 2
+Enter exponent: 5
+Result: 32
+`,
+            },{
+                name: '50. Write a C++ program to take three numbers from the user and print the greatest number',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int num1, num2, num3;
+
+    cout << "Enter three numbers: ";
+    cin >> num1 >> num2 >> num3;
+
+    if (num1 >= num2 && num1 >= num3)
+        cout << "Greatest number: " << num1 << endl;
+    else if (num2 >= num1 && num2 >= num3)
+        cout << "Greatest number: " << num2 << endl;
+    else
+        cout << "Greatest number: " << num3 << endl;
+
+    return 0;
+}
+`,
+                output: `Enter three numbers: 10 5 20
+Greatest number: 20
+`,
+            },{
+                name: '1. C++ Program to convert String to int',
+                code: `#include <iostream>
+#include <sstream>
+using namespace std;
+
+int main() {
+    string str;
+    cout << "Enter a number as string: ";
+    cin >> str;
+
+    int num;
+    stringstream ss(str);
+    ss >> num;
+
+    cout << "Converted integer: " << num << endl;
+
+    return 0;
+}
+`,
+                output: `Converted integer: 123`,
+            },{
+                name: '2. C++ Program to convert int to String',
+                code: `#include <iostream>
+#include <string>
+
+int main() {
+    int number = 123;
+    std::string str = std::to_string(number);
+    std::cout << "Converted string: " << str << std::endl;
+    return 0;
+}
+`,
+                output: `Converted string: 123
+`,
+            },{
+                name: '3. C++ Program to convert String to long',
+                code: `#include <iostream>
+#include <string>
+#include <cstdlib>
+
+int main() {
+    std::string str = "123456789";
+    long number = std::atol(str.c_str());
+    std::cout << "Converted long: " << number << std::endl;
+    return 0;
+}
+`,
+                output: `Converted long: 123456789
+`,
+            },{
+                name: '4. C++ Program to convert long to String',
+                code: `#include <iostream>
+#include <string>
+#include <sstream>
+
+int main() {
+    long number = 123456789;
+    std::stringstream ss;
+    ss << number;
+    std::string str = ss.str();
+    std::cout << "Converted string: " << str << std::endl;
+    return 0;
+}
+`,
+                output: `Converted string: 123456789
+`,
+            },{
+                name: '5. C++ Program to convert String to float',
+                code: `#include <iostream>
+#include <string>
+#include <sstream>
+
+int main() {
+    std::string str = "3.14159";
+    float number;
+    std::stringstream ss(str);
+    ss >> number;
+    std::cout << "Converted float: " << number << std::endl;
+    return 0;
+}
+`,
+                output: `Converted float: 3.14159
+`,
+            },{
+                name: '6. C++ Program to convert float to String',
+                code: `#include <iostream>
+#include <string>
+#include <sstream>
+
+int main() {
+    float number = 3.14159;
+    std::stringstream ss;
+    ss << number;
+    std::string str = ss.str();
+    std::cout << "Converted string: " << str << std::endl;
+    return 0;
+}
+`,
+                output: `Converted string: 3.14159
+`,
+            },{
+                name: '7. C++ Program to convert String to double',
+                code: `#include <iostream>
+#include <string>
+#include <sstream>
+
+int main() {
+    std::string str = "3.14159";
+    std::stringstream ss(str);
+    double number = 0;
+    ss >> number;
+    std::cout << "Converted double: " << number << std::endl;
+    return 0;
+}
+`,
+                output: `Converted double: 3.14159
+`,
+            },{
+                name: '8. C++ Program to convert double to String',
+                code: `#include <iostream>
+#include <string>
+#include <sstream>
+
+int main() {
+    double number = 3.14159;
+    std::stringstream ss;
+    ss << number;
+    std::string str = ss.str();
+    std::cout << "Converted string: " << str << std::endl;
+    return 0;
+}
+`,
+                output: `Converted string: 3.14159
+`,
+            },{
+                name: '9. C++ Program to convert char to int',
+                code: `#include <iostream>
+
+int main() {
+    char c = '5';
+    int num = c - '0';
+    std::cout << "Converted integer: " << num << std::endl;
+    return 0;
+}
+`,
+                output: `Converted integer: 5
+`,
+            },{
+                name: '10. C++ Program to convert int to char',
+                code: `#include <iostream>
+
+int main() {
+    int num = 5;
+    char c = num + '0';
+    std::cout << "Converted char: " << c << std::endl;
+    return 0;
+}
+`,
+                output: `Converted char: 5
+`,
+            },{
+                name: '11. C++ Program to convert Binary to Decimal',
+                code: `#include <iostream>
+#include <cmath>
+
+int binaryToDecimal(int binaryNum) {
+    int decimalNum = 0, base = 1, remainder;
+    while (binaryNum > 0) {
+        remainder = binaryNum % 10;
+        decimalNum += remainder * base;
+        binaryNum /= 10;
+        base *= 2;
+    }
+    return decimalNum;
+}
+
+int main() {
+    int binaryNum;
+    std::cout << "Enter a binary number: ";
+    std::cin >> binaryNum;
+    std::cout << "Decimal equivalent: " << binaryToDecimal(binaryNum) << std::endl;
+    return 0;
+}
+`,
+                output: `Enter a binary number: 1010
+Decimal equivalent: 10
+`,
+            },{
+                name: '11. C++ Program to convert Binary to Decimal',
+                code: `#include <iostream>
+#include <cmath>
+
+int binaryToDecimal(int binaryNum) {
+    int decimalNum = 0, base = 1, remainder;
+    while (binaryNum > 0) {
+        remainder = binaryNum % 10;
+        decimalNum += remainder * base;
+        binaryNum /= 10;
+        base *= 2;
+    }
+    return decimalNum;
+}
+
+int main() {
+    int binaryNum;
+    std::cout << "Enter a binary number: ";
+    std::cin >> binaryNum;
+    std::cout << "Decimal equivalent: " << binaryToDecimal(binaryNum) << std::endl;
+    return 0;
+}
+`,
+                output: `Enter a binary number: 1010
+Decimal equivalent: 10
+`,
+            },{
+                name: '12. C++ Program to convert Decimal to Binary',
+                code: `#include <iostream>
+
+void decimalToBinary(int decimalNum) {
+    int binaryNum[32];
+    int i = 0;
+    while (decimalNum > 0) {
+        binaryNum[i] = decimalNum % 2;
+        decimalNum /= 2;
+        i++;
+    }
+    std::cout << "Binary equivalent: ";
+    for (int j = i - 1; j >= 0; j--) {
+        std::cout << binaryNum[j];
+    }
+    std::cout << std::endl;
+}
+
+int main() {
+    int decimalNum;
+    std::cout << "Enter a decimal number: ";
+    std::cin >> decimalNum;
+    decimalToBinary(decimalNum);
+    return 0;
+}
+`,
+                output: `Enter a decimal number: 10
+Binary equivalent: 1010
+`,
+            },{
+                name: '13. C++ Program to convert Hex to Decimal',
+                code: `#include <iostream>
+#include <string>
+#include <cmath>
+
+int hexToDecimal(std::string hexNum) {
+    int decimalNum = 0;
+    int size = hexNum.size();
+    for (int i = 0; i < size; i++) {
+        char digit = hexNum.at(i);
+        int digitValue;
+        if (digit >= '0' && digit <= '9') {
+            digitValue = digit - '0';
+        } else if (digit >= 'A' && digit <= 'F') {
+            digitValue = 10 + (digit - 'A');
+        } else if (digit >= 'a' && digit <= 'f') {
+            digitValue = 10 + (digit - 'a');
+        } else {
+            std::cout << "Invalid hexadecimal number." << std::endl;
+            return -1;
+        }
+        decimalNum += digitValue * pow(16, size - i - 1);
+    }
+    return decimalNum;
+}
+
+int main() {
+    std::string hexNum;
+    std::cout << "Enter a hexadecimal number: ";
+    std::cin >> hexNum;
+    int decimalNum = hexToDecimal(hexNum);
+    if (decimalNum != -1) {
+        std::cout << "Decimal equivalent: " << decimalNum << std::endl;
+    }
+    return 0;
+}
+`,
+                output: `Enter a hexadecimal number: 1A
+Decimal equivalent: 26
+`,
+            },{
+                name: '14. C++ Program to convert Decimal to Hex',
+                code: `#include <iostream>
+#include <string>
+#include <sstream>
+
+std::string decimalToHex(int decimalNum) {
+    std::stringstream ss;
+    ss << std::hex << decimalNum;
+    return ss.str();
+}
+
+int main() {
+    int decimalNum;
+    std::cout << "Enter a decimal number: ";
+    std::cin >> decimalNum;
+    std::string hexNum = decimalToHex(decimalNum);
+    std::cout << "Hexadecimal equivalent: " << hexNum << std::endl;
+    return 0;
+}
+`,
+                output: `Enter a decimal number: 26
+Hexadecimal equivalent: 1a
+`,
+            },{
+                name: '15. C++ Program to convert Octal to Decimal',
+                code: `#include <iostream>
+#include <cmath>
+
+int octalToDecimal(int octalNum) {
+    int decimalNum = 0, i = 0, rem;
+    while (octalNum != 0) {
+        rem = octalNum % 10;
+        decimalNum += rem * pow(8, i);
+        ++i;
+        octalNum /= 10;
+    }
+    return decimalNum;
+}
+
+int main() {
+    int octalNum;
+    std::cout << "Enter an octal number: ";
+    std::cin >> octalNum;
+    int decimalNum = octalToDecimal(octalNum);
+    std::cout << "Decimal equivalent: " << decimalNum << std::endl;
+    return 0;
+}
+`,
+                output: `Enter an octal number: 72
+Decimal equivalent: 58
+`,
+            },{
+                name: '16. C++ Program to convert Decimal to Octal',
+                code: `#include <iostream>
+
+int decimalToOctal(int decimalNum) {
+    int octalNum = 0, i = 1;
+    while (decimalNum != 0) {
+        octalNum += (decimalNum % 8) * i;
+        decimalNum /= 8;
+        i *= 10;
+    }
+    return octalNum;
+}
+
+int main() {
+    int decimalNum;
+    std::cout << "Enter a decimal number: ";
+    std::cin >> decimalNum;
+    int octalNum = decimalToOctal(decimalNum);
+    std::cout << "Octal equivalent: " << octalNum << std::endl;
+    return 0;
+}
+`,
+                output: `Enter a decimal number: 58
+Octal equivalent: 72
+`,
+            },{
+                name: '1. Write a C++ program to create a new text file and write some text into it.',
+                code: `#include <iostream>
+#include <fstream>
+
+int main() {
+    std::ofstream file("example.txt"); // Creates a new file named "example.txt"
+
+    if (file.is_open()) {
+        file << "Hello, this is some text in the file.\n";
+        file << "This is another line.\n";
+        file << "And one more line.\n";
+        file.close();
+        std::cout << "Text written to file successfully.\n";
+    } else {
+        std::cout << "Unable to open file.\n";
+    }
+
+    return 0;
+}
+`,
+                output: `Text written to file successfully.`,
+            },{
+                name: '2. Write a C++ program to open an existing text file and display its contents on the console.',
+                code: `#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream file("example.txt");
+    if (!file.is_open()) {
+        cout << "Failed to open the file." << endl;
+        return 1;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        cout << line << endl;
+    }
+
+    file.close();
+    return 0;
+}
+`,
+                output: `Hello, world!
+This is a sample text file.
+`,
+            },{
+                name: '3. Write a C++ program to count the number of lines in a text file.',
+                code: `#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream file("example.txt");
+    string line;
+    int count = 0;
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            count++;
+        }
+        file.close();
+        cout << "Number of lines in the file: " << count << endl;
+    } else {
+        cout << "Unable to open file." << endl;
+    }
+
+    return 0;
+}
+`,
+                output: ``,
+            },{
+                name: '4. Write a C++ program to count the number of words in a text file.',
+                code: `#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int countWords(string filename) {
+    ifstream file(filename);
+    string word;
+    int count = 0;
+
+    while (file >> word) {
+        count++;
+    }
+
+    file.close();
+    return count;
+}
+
+int main() {
+    string filename = "example.txt"; // Replace with your file name
+    int wordCount = countWords(filename);
+
+    cout << "Number of words in the file: " << wordCount << endl;
+
+    return 0;
+}
+`,
+                output: ``,
+            },{
+                name: '5. Write a C++ program to copy the contents of one text file to another.',
+                code: `#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+void copyFileContents(string sourceFile, string destinationFile) {
+    ifstream source(sourceFile);
+    ofstream destination(destinationFile);
+    string line;
+
+    if (!source.is_open()) {
+        cout << "Error opening source file." << endl;
+        return;
+    }
+
+    if (!destination.is_open()) {
+        cout << "Error opening destination file." << endl;
+        return;
+    }
+
+    while (getline(source, line)) {
+        destination << line << endl;
+    }
+
+    source.close();
+    destination.close();
+
+    cout << "File copied successfully." << endl;
+}
+
+int main() {
+    string sourceFile = "source.txt"; // Replace with your source file name
+    string destinationFile = "destination.txt"; // Replace with your destination file name
+
+    copyFileContents(sourceFile, destinationFile);
+
+    return 0;
+}
+`,
+                output: ``,
+            },{
+                name: '6. Write a C++ program to find and replace a specific word in a text file.',
+                code: `#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+void findAndReplace(string filePath, string targetWord, string replacementWord) {
+    ifstream file(filePath);
+    string line, temp;
+
+    if (!file.is_open()) {
+        cout << "Error opening file." << endl;
+        return;
+    }
+
+    ofstream outFile("temp.txt");
+
+    while (getline(file, line)) {
+        size_t pos = 0;
+        while ((pos = line.find(targetWord, pos)) != string::npos) {
+            line.replace(pos, targetWord.length(), replacementWord);
+            pos += replacementWord.length();
+        }
+        outFile << line << endl;
+    }
+
+    file.close();
+    outFile.close();
+
+    remove(filePath.c_str());
+    rename("temp.txt", filePath.c_str());
+
+    cout << "Word replaced successfully." << endl;
+}
+
+int main() {
+    string filePath = "example.txt"; // Replace with your file path
+    string targetWord = "old_word"; // Word to be replaced
+    string replacementWord = "new_word"; // New word
+
+    findAndReplace(filePath, targetWord, replacementWord);
+
+    return 0;
+}
+`,
+                output: ``,
+            },{
+                name: '7. Write a C++ program to append new data to an existing text file.',
+                code: `#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    ofstream file;
+    file.open("example.txt", ios::app); // Open file in append mode
+
+    if (!file.is_open()) {
+        cout << "Error opening file." << endl;
+        return 1;
+    }
+
+    // Append new data to the file
+    file << "This is new data.\n";
+    file << "Appending more data.\n";
+
+    file.close(); // Close the file
+
+    cout << "Data appended successfully." << endl;
+
+    return 0;
+}
+`,
+                output: ``,
+            },{
+                name: '8. Write a C++ program to sort the lines of a text file in alphabetical order.',
+                code: `#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    ifstream inputFile("input.txt");
+    ofstream outputFile("output.txt");
+
+    if (!inputFile.is_open()) {
+        cout << "Error opening input file." << endl;
+        return 1;
+    }
+
+    if (!outputFile.is_open()) {
+        cout << "Error opening output file." << endl;
+        return 1;
+    }
+
+    vector<string> lines;
+    string line;
+
+    // Read lines from input file into vector
+    while (getline(inputFile, line)) {
+        lines.push_back(line);
+    }
+
+    // Sort the lines
+    sort(lines.begin(), lines.end());
+
+    // Write sorted lines to output file
+    for (const string& sortedLine : lines) {
+        outputFile << sortedLine << endl;
+    }
+
+    inputFile.close();
+    outputFile.close();
+
+    cout << "Lines sorted and written to output file." << endl;
+
+    return 0;
+}
+`,
+                output: ``,
+            },{
+                name: '9. Write a C++ program to merge multiple text files into a single file',
+                code: `#include <iostream>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    // List of input file names
+    vector<string> inputFiles = {"input1.txt", "input2.txt", "input3.txt"};
+
+    // Output file name
+    string outputFile = "output.txt";
+
+    ofstream outFile(outputFile, ios::app);
+
+    if (!outFile.is_open()) {
+        cout << "Error opening output file." << endl;
+        return 1;
+    }
+
+    for (const string& inputFile : inputFiles) {
+        ifstream inFile(inputFile);
+
+        if (!inFile.is_open()) {
+            cout << "Error opening input file: " << inputFile << endl;
+            continue;
+        }
+
+        outFile << "Contents of file: " << inputFile << endl;
+        outFile << inFile.rdbuf(); // Append file contents to output file
+
+        inFile.close();
+        outFile << endl; // Add a newline between file contents
+    }
+
+    outFile.close();
+
+    cout << "Files merged successfully." << endl;
+
+    return 0;
+}
+`,
+                output: ``,
+            },{
+                name: '10. Write a C++ program to split a large text file into smaller files of equal size.',
+                code: `#include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
+
+using namespace std;
+
+int main() {
+    string inputFile = "largefile.txt";
+    string prefix = "output";
+    const int chunkSize = 1000; // Number of characters in each chunk
+
+    ifstream inFile(inputFile);
+
+    if (!inFile.is_open()) {
+        cout << "Error opening input file." << endl;
+        return 1;
+    }
+
+    int fileNum = 1;
+    while (!inFile.eof()) {
+        ofstream outFile(prefix + to_string(fileNum) + ".txt");
+
+        if (!outFile.is_open()) {
+            cout << "Error opening output file." << endl;
+            return 1;
+        }
+
+        string chunk;
+        chunk.resize(chunkSize);
+
+        inFile.read(&chunk[0], chunkSize);
+
+        // Remove trailing whitespace
+        chunk = chunk.substr(0, chunk.find_last_not_of(" \t\n\r\f\v") + 1);
+
+        outFile << chunk;
+        outFile.close();
+
+        fileNum++;
+    }
+
+    inFile.close();
+
+    cout << "File split successfully." << endl;
+
+    return 0;
+}
+`,
+                output: ``,
+            },{
+                name: '1. Write a C++ method to find the smallest number among three numbers.',
+                code: `#include <iostream>
+using namespace std;
+
+int findSmallest(int num1, int num2, int num3) {
+    int smallest = num1;
+
+    if (num2 < smallest) {
+        smallest = num2;
+    }
+
+    if (num3 < smallest) {
+        smallest = num3;
+    }
+
+    return smallest;
+}
+
+int main() {
+    int num1, num2, num3;
+    cout << "Enter three numbers: ";
+    cin >> num1 >> num2 >> num3;
+
+    int smallest = findSmallest(num1, num2, num3);
+
+    cout << "The smallest number is: " << smallest << endl;
+
+    return 0;
+}
+`,
+                output: `Enter three numbers: 5 2 8
+The smallest number is: 2
+`,
+            },{
+                name: '2. Write a C++ method to compute the average of three numbers.',
+                code: `#include <iostream>
+using namespace std;
+
+float average(float num1, float num2, float num3) {
+    return (num1 + num2 + num3) / 3;
+}
+
+int main() {
+    float num1, num2, num3;
+    
+    cout << "Enter three numbers: ";
+    cin >> num1 >> num2 >> num3;
+    
+    float avg = average(num1, num2, num3);
+    
+    cout << "The average is: " << avg << endl;
+    
+    return 0;
+}
+`,
+                output: `Enter three numbers: 5 10 15
+The average is: 10
+`,
+            },{
+                name: '3. Write a C++ method to display the middle character of a string.',
+                code: `#include <iostream>
+#include <string>
+using namespace std;
+
+void displayMiddleCharacter(string str) {
+    int length = str.length();
+    
+    if (length % 2 == 0) {
+        // String has even length, so there is one middle character
+        cout << "Middle character: " << str[length / 2 - 1] << endl;
+    } else {
+        // String has odd length, so there are two middle characters
+        cout << "Middle characters: " << str[length / 2 - 1] << " and " << str[length / 2] << endl;
+    }
+}
+
+int main() {
+    string input;
+    
+    cout << "Enter a string: ";
+    cin >> input;
+    
+    displayMiddleCharacter(input);
+    
+    return 0;
+}
+`,
+                output: `Enter a string: hello
+Middle character: l
+`,
+            },{
+                name: '4. Write a C++ method to find all twin prime numbers less than 100.',
+                code: `#include <iostream>
+#include <vector>
+using namespace std;
+
+bool isPrime(int n) {
+    if (n <= 1) return false;
+    if (n <= 3) return true;
+    
+    if (n % 2 == 0 || n % 3 == 0) return false;
+    
+    for (int i = 5; i * i <= n; i += 6) {
+        if (n % i == 0 || n % (i + 2) == 0) return false;
+    }
+    
+    return true;
+}
+
+void findTwinPrimes(int limit) {
+    vector<int> twinPrimes;
+    
+    for (int i = 3; i < limit; i++) {
+        if (isPrime(i) && isPrime(i + 2)) {
+            twinPrimes.push_back(i);
+        }
+    }
+    
+    cout << "Twin prime numbers less than " << limit << " are:" << endl;
+    for (int i = 0; i < twinPrimes.size(); i++) {
+        cout << twinPrimes[i] << " and " << twinPrimes[i] + 2 << endl;
+    }
+}
+
+int main() {
+    int limit = 100;
+    findTwinPrimes(limit);
+    
+    return 0;
+}
+`,
+                output: `Twin prime numbers less than 100 are:
+3 and 5
+5 and 7
+11 and 13
+17 and 19
+29 and 31
+41 and 43
+59 and 61
+71 and 73
+`,
+            },{
+                name: '5. Write a C++ method to count the number of digits in an integer with the value 2. The integer may be assumed to be non-negative.',
+                code: `#include <iostream>
+using namespace std;
+
+int countDigits(int num) {
+    int count = 0;
+    
+    while (num > 0) {
+        if (num % 10 == 2) {
+            count++;
+        }
+        num /= 10;
+    }
+    
+    return count;
+}
+
+int main() {
+    int num = 12232;
+    cout << "Number of digits with value 2 in " << num << " is: " << countDigits(num) << endl;
+    
+    return 0;
+}
+`,
+                output: `Number of digits with value 2 in 12232 is: 3
+`,
+            },{
+                name: '6. Write a C++ method that accepts three integers and checks whether they are consecutive or not. Returns true or false.',
+                code: `#include <iostream>
+using namespace std;
+
+bool areConsecutive(int a, int b, int c) {
+    if (a == b - 1 && b == c - 1) {
+        return true;
+    } else if (a == b + 1 && b == c + 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+int main() {
+    int a, b, c;
+    cout << "Enter three integers: ";
+    cin >> a >> b >> c;
+
+    if (areConsecutive(a, b, c)) {
+        cout << "The three integers are consecutive." << endl;
+    } else {
+        cout << "The three integers are not consecutive." << endl;
+    }
+
+    return 0;
+}
+`,
+                output: `Enter three integers: 4 5 6
+The three integers are consecutive.
+
+Enter three integers: 1 2 4
+The three integers are not consecutive.
+`,
+            },{
+                name: '1. Write a C++ program to create a class called Animal with a method called makeSound(). Create a derived class called Cat that overrides the makeSound() method to bark.',
+                code: `#include <iostream>
+using namespace std;
+
+// Base class
+class Animal {
+public:
+    virtual void makeSound() {
+        cout << "Animal makes a sound" << endl;
+    }
+};
+
+// Derived class
+class Cat : public Animal {
+public:
+    void makeSound() override {
+        cout << "Cat meows" << endl;
+    }
+};
+
+int main() {
+    Animal* animal = new Animal();
+    animal->makeSound(); // Output: Animal makes a sound
+
+    Cat* cat = new Cat();
+    cat->makeSound(); // Output: Cat meows
+
+    delete animal;
+    delete cat;
+    return 0;
+}
+`,
+                output: `Animal makes a sound
+Cat meows
+`,
+            },{
+                name: '2. Write a C++ program to create a class called Vehicle with a method called drive(). Create a derived class called Car that overrides the drive() method to print "Repairing a car"',
+                code: `#include <iostream>
+using namespace std;
+
+// Base class
+class Vehicle {
+public:
+    void drive() {
+        cout << "Driving a vehicle" << endl;
+    }
+};
+
+// Derived class
+class Car : public Vehicle {
+public:
+    void drive() {
+        cout << "Repairing a car" << endl;
+    }
+};
+
+int main() {
+    Vehicle v;
+    v.drive();
+
+    Car c;
+    c.drive();
+
+    return 0;
+}
+`,
+                output: `Driving a vehicle
+Repairing a car
+`,
+            },{
+                name: '3. Write a C++ program to create a class called Shape with a method called getArea(). Create a derived class called Rectangle that overrides the getArea() method to calculate the area of a rectangle.',
+                code: `#include <iostream>
+using namespace std;
+
+// Base class
+class Shape {
+public:
+    virtual double getArea() {
+        return 0;
+    }
+};
+
+// Derived class
+class Rectangle : public Shape {
+private:
+    double length;
+    double width;
+
+public:
+    Rectangle(double l, double w) {
+        length = l;
+        width = w;
+    }
+
+    double getArea() override {
+        return length * width;
+    }
+};
+
+int main() {
+    Rectangle rect(5, 10);
+    cout << "Area of rectangle: " << rect.getArea() << endl;
+
+    return 0;
+}
+`,
+                output: `Area of rectangle: 50
+`,
+            },{
+                name: '4. Write a C++ program to create a class called Employee with methods called work() and getSalary(). Create a derived class called HRManager that overrides the work() method and adds a new method called addEmployee().',
+                code: `#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class
+class Employee {
+public:
+    void work() {
+        cout << "Employee is working." << endl;
+    }
+
+    virtual int getSalary() {
+        return 0;
+    }
+};
+
+// Derived class
+class HRManager : public Employee {
+public:
+    void work() override {
+        cout << "HR Manager is managing employees." << endl;
+    }
+
+    void addEmployee() {
+        cout << "HR Manager is adding a new employee." << endl;
+    }
+
+    int getSalary() override {
+        return 5000; // Example salary for HR Manager
+    }
+};
+
+int main() {
+    HRManager hrManager;
+    hrManager.work(); // Output: HR Manager is managing employees.
+    hrManager.addEmployee(); // Output: HR Manager is adding a new employee.
+    cout << "Salary of HR Manager: " << hrManager.getSalary() << endl; // Output: Salary of HR Manager: 5000
+
+    return 0;
+}
+`,
+                output: `HR Manager is managing employees.
+HR Manager is adding a new employee.
+Salary of HR Manager: 5000
+`,
+            },{
+                name: '5. Write a C++ program to create a class known as "BankAccount" with methods called deposit() and withdraw(). Create a derived class called SavingsAccount that overrides the withdraw() method to prevent withdrawals if the account balance falls below one hundred.',
+                code: `#include <iostream>
+using namespace std;
+
+class BankAccount {
+protected:
+    float balance;
+public:
+    BankAccount() {
+        balance = 0;
+    }
+
+    void deposit(float amount) {
+        balance += amount;
+    }
+
+    virtual void withdraw(float amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            cout << "Withdrawal of $" << amount << " successful." << endl;
+        } else {
+            cout << "Insufficient funds." << endl;
+        }
+    }
+
+    float getBalance() {
+        return balance;
+    }
+};
+
+class SavingsAccount : public BankAccount {
+public:
+    SavingsAccount() : BankAccount() {}
+
+    void withdraw(float amount) override {
+        if (balance - amount >= 100) {
+            balance -= amount;
+            cout << "Withdrawal of $" << amount << " successful." << endl;
+        } else {
+            cout << "Cannot withdraw. Minimum balance of $100 must be maintained." << endl;
+        }
+    }
+};
+
+int main() {
+    SavingsAccount sa;
+    sa.deposit(500);
+    cout << "Current balance: $" << sa.getBalance() << endl;
+    sa.withdraw(50);
+    cout << "Current balance: $" << sa.getBalance() << endl;
+    sa.withdraw(400);
+    cout << "Current balance: $" << sa.getBalance() << endl;
+
+    return 0;
+}
+`,
+                output: `Current balance: $500
+Withdrawal of $50 successful.
+Current balance: $450
+Cannot withdraw. Minimum balance of $100 must be maintained.
+Current balance: $450
+`,
+            },{
+                name: '1. Write a C++ program to create a class called "Person" with a name and age attribute. Create two instances of the "Person" class, set their attributes using the constructor, and print their name and age.',
+                code: `#include <iostream>
+using namespace std;
+
+class Person {
+public:
+    string name;
+    int age;
+
+    // Constructor
+    Person(string n, int a) {
+        name = n;
+        age = a;
+    }
+
+    void printInfo() {
+        cout << "Name: " << name << ", Age: " << age << endl;
+    }
+};
+
+int main() {
+    // Create two instances of Person
+    Person person1("John Doe", 30);
+    Person person2("Jane Doe", 28);
+
+    // Print their details
+    person1.printInfo();
+    person2.printInfo();
+
+    return 0;
+}
+`,
+                output: `Name: John Doe, Age: 30
+Name: Jane Doe, Age: 28`,
+            },{
+                name: '2. Write a C++ program to create a class called "Dog" with a name and breed attribute. Create two instances of the "Dog" class, set their attributes using the constructor and modify the attributes using the setter methods and print the updated values.',
+                code: `#include <iostream>
+using namespace std;
+
+class Dog {
+private:
+    string name;
+    string breed;
+
+public:
+    // Constructor
+    Dog(string n, string b) : name(n), breed(b) {}
+
+    // Setter methods
+    void setName(string n) {
+        name = n;
+    }
+
+    void setBreed(string b) {
+        breed = b;
+    }
+
+    // Method to print dog information
+    void printInfo() {
+        cout << "Dog's Name: " << name << ", Breed: " << breed << endl;
+    }
+};
+
+int main() {
+    // Create two instances of Dog
+    Dog dog1("Rex", "German Shepherd");
+    Dog dog2("Buddy", "Labrador");
+
+    // Modify attributes using setter methods
+    dog1.setName("Max");
+    dog2.setBreed("Golden Retriever");
+
+    // Print updated details
+    dog1.printInfo();
+    dog2.printInfo();
+
+    return 0;
+}
+`,
+                output: `Dog's Name: Max, Breed: German Shepherd
+Dog's Name: Buddy, Breed: Golden Retriever
+`,
+            },{
+                name: '3. Write a C++ program to create a class called "Rectangle" with width and height attributes. Calculate the area and perimeter of the rectangle.',
+                code: `#include <iostream>
+using namespace std;
+
+class Rectangle {
+private:
+    double width;
+    double height;
+
+public:
+    // Constructor to initialize width and height
+    Rectangle(double w, double h) : width(w), height(h) {}
+
+    // Method to calculate area
+    double area() {
+        return width * height;
+    }
+
+    // Method to calculate perimeter
+    double perimeter() {
+        return 2 * (width + height);
+    }
+
+    // Method to display area and perimeter
+    void display() {
+        cout << "Rectangle width: " << width << ", height: " << height << endl;
+        cout << "Area: " << area() << ", Perimeter: " << perimeter() << endl;
+    }
+};
+
+int main() {
+    // Create a Rectangle object
+    Rectangle myRectangle(10.0, 5.0);
+
+    // Display its area and perimeter
+    myRectangle.display();
+
+    return 0;
+}
+`,
+                output: `Rectangle width: 10, height: 5
+Area: 50, Perimeter: 30
+`,
+            },{
+                name: '4. Write a C++ program to create a class called "Circle" with a radius attribute. You can access and modify this attribute. Calculate the area and circumference of the circle.',
+                code: `#include <iostream>
+using namespace std;
+
+class Circle {
+private:
+    double radius;
+
+public:
+    Circle(double r) : radius(r) {}
+
+    void setRadius(double r) {
+        radius = r;
+    }
+
+    double getRadius() const {
+        return radius;
+    }
+
+    double calculateArea() const {
+        return 3.14159 * radius * radius;
+    }
+
+    double calculateCircumference() const {
+        return 2 * 3.14159 * radius;
+    }
+};
+
+int main() {
+    Circle circle(5.0); // Create a Circle object with a radius of 5.0
+
+    // Print the initial radius, area, and circumference
+    cout << "Initial radius: " << circle.getRadius() << endl;
+    cout << "Area: " << circle.calculateArea() << ", Circumference: " << circle.calculateCircumference() << endl;
+
+    // Modify the radius of the circle
+    circle.setRadius(10.0);
+    cout << "After setting radius to 10.0:" << endl;
+
+    // Print the updated radius, area, and circumference
+    cout << "Updated radius: " << circle.getRadius() << endl;
+    cout << "Area: " << circle.calculateArea() << ", Circumference: " << circle.calculateCircumference() << endl;
+
+    return 0;
+}
+`,
+                output: `Initial radius: 5
+Area: 78.5398, Circumference: 31.416
+After setting radius to 10.0:
+Updated radius: 10
+Area: 314.159, Circumference: 62.832`,
+            },{
+                name: '5. Write a C++ program to create a class called "Book" with attributes for title, author, and ISBN, and methods to add and re5. Write a C++ program to create a class called "Book" with attributes for title, author, and ISBN, and methods to add and remove books from a collection.move books from a collection.',
+                code: `#include <iostream>
+#include <vector>
+#include <algorithm>
+
+class Book {
+public:
+    std::string title;
+    std::string author;
+    std::string isbn;
+
+    Book(std::string title, std::string author, std::string isbn)
+        : title(title), author(author), isbn(isbn) {}
+};
+
+class BookCollection {
+private:
+    std::vector<Book> books;
+
+public:
+    void addBook(const Book& book) {
+        books.push_back(book);
+        std::cout << book.title << " added to collection." << std::endl;
+    }
+
+    void removeBook(const std::string& isbn) {
+        auto it = std::remove_if(books.begin(), books.end(), 
+                                 [&isbn](const Book& book) { return book.isbn == isbn; });
+
+        if (it != books.end()) {
+            std::cout << it->title << " removed from collection." << std::endl;
+            books.erase(it, books.end());
+        } else {
+            std::cout << "Book with ISBN " << isbn << " not found." << std::endl;
+        }
+    }
+
+    void printCollection() const {
+        std::cout << "Book Collection:" << std::endl;
+        for (const auto& book : books) {
+            std::cout << "Title: " << book.title << ", Author: " << book.author << ", ISBN: " << book.isbn << std::endl;
+        }
+    }
+};
+
+int main() {
+    BookCollection collection;
+
+    // Adding books to collection
+    collection.addBook(Book("The Great Gatsby", "F. Scott Fitzgerald", "1234567890"));
+    collection.addBook(Book("1984", "George Orwell", "0987654321"));
+
+    // Printing the collection
+    collection.printCollection();
+
+    // Removing a book
+    collection.removeBook("1234567890");
+
+    // Printing the updated collection
+    collection.printCollection();
+
+    return 0;
+}
+`,
+                output: `The Great Gatsby added to collection.
+1984 added to collection.
+Book Collection:
+Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 1234567890
+Title: 1984, Author: George Orwell, ISBN: 0987654321
+The Great Gatsby removed from collection.
+Book Collection:
+Title: 1984, Author: George Orwell, ISBN: 0987654321
+`,
+            },{
+                name: '6. Write a C++ program to create a class called "Employee" with a name, job title, and salary attributes, and methods to calculate and update salary.',
+                code: `#include <iostream>
+#include <string>
+using namespace std;
+
+class Employee {
+private:
+    string name;
+    string jobTitle;
+    double salary;
+
+public:
+    Employee(string n, string jt, double s) {
+        name = n;
+        jobTitle = jt;
+        salary = s;
+    }
+
+    void displayInfo() {
+        cout << "Name: " << name << endl;
+        cout << "Job Title: " << jobTitle << endl;
+        cout << "Salary: $" << salary << endl;
+    }
+
+    void updateSalary(double newSalary) {
+        salary = newSalary;
+    }
+};
+
+int main() {
+    Employee emp("John Doe", "Software Engineer", 50000);
+    emp.displayInfo();
+
+    cout << "Updating salary..." << endl;
+    emp.updateSalary(60000);
+    emp.displayInfo();
+
+    return 0;
+}
+`,
+                output: `Name: John Doe
+Job Title: Software Engineer
+Salary: $50000
+Updating salary...
+Name: John Doe
+Job Title: Software Engineer
+Salary: $60000
+`,
+            },{
+                name: '7. Write a C++ program to create a class called "Bank" with a collection of accounts and methods to add and remove accounts, and to deposit and withdraw money. Also define a class called "Account" to maintain account details of a particular customer.',
+                code: `#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Account {
+private:
+    string customerName;
+    int accountNumber;
+    double balance;
+
+public:
+    Account(string name, int number, double initialBalance) {
+        customerName = name;
+        accountNumber = number;
+        balance = initialBalance;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+        } else {
+            cout << "Insufficient funds!" << endl;
+        }
+    }
+
+    void displayInfo() {
+        cout << "Customer Name: " << customerName << endl;
+        cout << "Account Number: " << accountNumber << endl;
+        cout << "Balance: $" << balance << endl;
+    }
+};
+
+class Bank {
+private:
+    vector<Account> accounts;
+
+public:
+    void addAccount(Account account) {
+        accounts.push_back(account);
+    }
+
+    void removeAccount(int accountNumber) {
+        for (auto it = accounts.begin(); it != accounts.end(); ++it) {
+            if (it->getAccountNumber() == accountNumber) {
+                accounts.erase(it);
+                break;
+            }
+        }
+    }
+
+    void deposit(int accountNumber, double amount) {
+        for (auto& account : accounts) {
+            if (account.getAccountNumber() == accountNumber) {
+                account.deposit(amount);
+                break;
+            }
+        }
+    }
+
+    void withdraw(int accountNumber, double amount) {
+        for (auto& account : accounts) {
+            if (account.getAccountNumber() == accountNumber) {
+                account.withdraw(amount);
+                break;
+            }
+        }
+    }
+
+    void displayAllAccountsInfo() {
+        for (const auto& account : accounts) {
+            account.displayInfo();
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    Bank bank;
+    Account acc1("John Doe", 12345, 1000);
+    Account acc2("Jane Smith", 54321, 2000);
+
+    bank.addAccount(acc1);
+    bank.addAccount(acc2);
+
+    bank.displayAllAccountsInfo();
+
+    cout << "Depositing $500 into account 12345..." << endl;
+    bank.deposit(12345, 500);
+    bank.displayAllAccountsInfo();
+
+    cout << "Withdrawing $2000 from account 54321..." << endl;
+    bank.withdraw(54321, 2000);
+    bank.displayAllAccountsInfo();
+
+    return 0;
+}
+`,
+                output: `Customer Name: John Doe
+Account Number: 12345
+Balance: $1000
+
+Customer Name: Jane Smith
+Account Number: 54321
+Balance: $2000
+
+Depositing $500 into account 12345...
+Customer Name: John Doe
+Account Number: 12345
+Balance: $1500
+
+Customer Name: Jane Smith
+Account Number: 54321
+Balance: $2000
+
+Withdrawing $2000 from account 54321...
+Customer Name: John Doe
+Account Number: 12345
+Balance: $1500
+
+Customer Name: Jane Smith
+Account Number: 54321
+Balance: $0
+`,
+            },{
+                name: '8. Write a C++ program to create a class called "TrafficLight" with attributes for color and duration, and methods to change the color and check for red or green.',
+                code: `#include <iostream>
+#include <string>
+using namespace std;
+
+class TrafficLight {
+private:
+    string color;
+    int duration;
+
+public:
+    TrafficLight(string initialColor, int initialDuration) {
+        color = initialColor;
+        duration = initialDuration;
+    }
+
+    void changeColor(string newColor, int newDuration) {
+        color = newColor;
+        duration = newDuration;
+    }
+
+    bool isRed() {
+        return color == "Red";
+    }
+
+    bool isGreen() {
+        return color == "Green";
+    }
+};
+
+int main() {
+    TrafficLight trafficLight("Red", 30);
+
+    cout << "Current color: " << trafficLight.isRed() ? "Red" : "Green" << endl;
+    cout << "Changing color to Green..." << endl;
+    trafficLight.changeColor("Green", 45);
+
+    cout << "Current color: " << trafficLight.isRed() ? "Red" : "Green" << endl;
+
+    return 0;
+}
+`,
+                output: `Current color: Red
+Changing color to Green...
+Current color: Green
+`,
+            },{
+                name: '9. Write a C++ program to create a class called "Employee" with a name, salary, and hire date attributes, and a method to calculate years of service.',
+                code: `#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+
+class Employee {
+private:
+    string name;
+    double salary;
+    time_t hireDate;
+
+public:
+    Employee(string n, double s, time_t hd) {
+        name = n;
+        salary = s;
+        hireDate = hd;
+    }
+
+    int yearsOfService() {
+        time_t now = time(0);
+        tm* hireTm = localtime(&hireDate);
+        tm* nowTm = localtime(&now);
+
+        int years = nowTm->tm_year - hireTm->tm_year;
+        if (nowTm->tm_mon < hireTm->tm_mon ||
+            (nowTm->tm_mon == hireTm->tm_mon && nowTm->tm_mday < hireTm->tm_mday)) {
+            years--;
+        }
+
+        return years;
+    }
+};
+
+int main() {
+    // Assuming hire date is in the format: year, month(0-11), day
+    struct tm hireDate = {0, 0, 0, 1, 0, 121}; // January 1, 2021
+    time_t hireTime = mktime(&hireDate);
+
+    Employee emp("John Doe", 50000, hireTime);
+    cout << "Years of Service: " << emp.yearsOfService() << endl;
+
+    return 0;
+}
+`,
+                output: `Years of Service: 3`,
+            },{
+                name: '10. Write a C++ program to create a class called "Student" with a name, grade, and courses attributes, and methods to add and remove courses.',
+                code: `#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int grade;
+    vector<string> courses;
+
+public:
+    Student(string n, int g) {
+        name = n;
+        grade = g;
+    }
+
+    void addCourse(string course) {
+        courses.push_back(course);
+    }
+
+    void removeCourse(string course) {
+        for (auto it = courses.begin(); it != courses.end(); ++it) {
+            if (*it == course) {
+                courses.erase(it);
+                break;
+            }
+        }
+    }
+
+    void displayCourses() {
+        cout << "Courses for " << name << " (Grade " << grade << "):" << endl;
+        for (const auto& course : courses) {
+            cout << "- " << course << endl;
+        }
+    }
+};
+
+int main() {
+    Student student("John Doe", 10);
+    student.addCourse("Math");
+    student.addCourse("Science");
+    student.addCourse("History");
+
+    student.displayCourses();
+
+    cout << "Removing course: Science" << endl;
+    student.removeCourse("Science");
+
+    student.displayCourses();
+
+    return 0;
+}
+`,
+                output: `Courses for John Doe (Grade 10):
+- Math
+- Science
+- History
+Removing course: Science
+Courses for John Doe (Grade 10):
+- Math
+- History
+`,
+            },{
+                name: '11. Write a C++ program to create a class called "Library" with a collection of books and methods to add and remove books.',
+                code: `#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+class Book {
+public:
+    string title;
+    string author;
+
+    Book(string t, string a) : title(t), author(a) {}
+};
+
+class Library {
+private:
+    vector<Book> books;
+
+public:
+    void addBook(const Book& book) {
+        books.push_back(book);
+    }
+
+    void removeBook(const string& title) {
+        for (auto it = books.begin(); it != books.end(); ++it) {
+            if (it->title == title) {
+                books.erase(it);
+                break;
+            }
+        }
+    }
+
+    void displayBooks() {
+        cout << "Library Books:" << endl;
+        for (const auto& book : books) {
+            cout << "- " << book.title << " by " << book.author << endl;
+        }
+    }
+};
+
+int main() {
+    Library library;
+    Book book1("The Great Gatsby", "F. Scott Fitzgerald");
+    Book book2("To Kill a Mockingbird", "Harper Lee");
+    Book book3("1984", "George Orwell");
+
+    library.addBook(book1);
+    library.addBook(book2);
+    library.addBook(book3);
+
+    library.displayBooks();
+
+    cout << "Removing book: To Kill a Mockingbird" << endl;
+    library.removeBook("To Kill a Mockingbird");
+
+    library.displayBooks();
+
+    return 0;
+}
+`,
+                output: `Library Books:
+- The Great Gatsby by F. Scott Fitzgerald
+- To Kill a Mockingbird by Harper Lee
+- 1984 by George Orwell
+Removing book: To Kill a Mockingbird
+Library Books:
+- The Great Gatsby by F. Scott Fitzgerald
+- 1984 by George Orwell
+`,
+            },{
+                name: '12. Write a C++ program to create a class called "Airplane" with a flight number, destination, and departure time attributes, and methods to check flight status and delay.',
+                code: `#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+
+class Airplane {
+private:
+    string flightNumber;
+    string destination;
+    time_t departureTime;
+    bool delayed;
+
+public:
+    Airplane(string fn, string dest, time_t depTime) {
+        flightNumber = fn;
+        destination = dest;
+        departureTime = depTime;
+        delayed = false;
+    }
+
+    void checkStatus() {
+        if (delayed) {
+            cout << "Flight " << flightNumber << " to " << destination << " is delayed." << endl;
+        } else {
+            cout << "Flight " << flightNumber << " to " << destination << " is on time." << endl;
+        }
+    }
+
+    void delayFlight() {
+        delayed = true;
+    }
+
+    void setDepartureTime(time_t newTime) {
+        departureTime = newTime;
+    }
+
+    void displayDepartureTime() {
+        tm* dt = localtime(&departureTime);
+        cout << "Departure time for Flight " << flightNumber << " to " << destination << ": "
+             << dt->tm_hour << ":" << dt->tm_min << endl;
+    }
+};
+
+int main() {
+    // Assuming departure time is in the format: year, month(0-11), day, hour, minute
+    struct tm departureTime = {0, 0, 0, 12, 30}; // 12:30 PM
+    time_t depTime = mktime(&departureTime);
+
+    Airplane airplane("ABC123", "New York", depTime);
+    airplane.checkStatus();
+
+    cout << "Delaying flight..." << endl;
+    airplane.delayFlight();
+    airplane.checkStatus();
+
+    cout << "Updating departure time..." << endl;
+    struct tm newDepartureTime = {0, 0, 0, 13, 0}; // 1:00 PM
+    time_t newDepTime = mktime(&newDepartureTime);
+    airplane.setDepartureTime(newDepTime);
+    airplane.displayDepartureTime();
+
+    return 0;
+}
+`,
+                output: `Flight ABC123 to New York is on time.
+Delaying flight...
+Flight ABC123 to New York is delayed.
+Updating departure time...
+Departure time for Flight ABC123 to New York: 13:0
+`,
+            },{
+                name: '13. Write a C++ program to create a class called "Inventory" with a collection of products and methods to add and remove products, and to check for low inventory.',
+                code: `#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+class Product {
+public:
+    string name;
+    int quantity;
+
+    Product(string n, int q) : name(n), quantity(q) {}
+};
+
+class Inventory {
+private:
+    vector<Product> products;
+
+public:
+    void addProduct(const Product& product) {
+        products.push_back(product);
+    }
+
+    void removeProduct(const string& name) {
+        for (auto it = products.begin(); it != products.end(); ++it) {
+            if (it->name == name) {
+                products.erase(it);
+                break;
+            }
+        }
+    }
+
+    void checkLowInventory() {
+        cout << "Low Inventory Products:" << endl;
+        for (const auto& product : products) {
+            if (product.quantity < 5) {
+                cout << "- " << product.name << ": " << product.quantity << " units" << endl;
+            }
+        }
+    }
+};
+
+int main() {
+    Inventory inventory;
+    Product product1("Laptop", 10);
+    Product product2("Smartphone", 3);
+    Product product3("Headphones", 7);
+
+    inventory.addProduct(product1);
+    inventory.addProduct(product2);
+    inventory.addProduct(product3);
+
+    inventory.checkLowInventory();
+
+    cout << "Removing product: Smartphone" << endl;
+    inventory.removeProduct("Smartphone");
+
+    inventory.checkLowInventory();
+
+    return 0;
+}
+`,
+                output: `Low Inventory Products:
+- Smartphone: 3 units
+Removing product: Smartphone
+Low Inventory Products:
+`,
+            },{
+                name: '14. Write a C++ program to create a class called "School" with attributes for students, teachers, and classes, and methods to add and remove students and teachers, and to create classes',
+                code: `#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+class Student {
+public:
+    string name;
+
+    Student(string n) : name(n) {}
+};
+
+class Teacher {
+public:
+    string name;
+
+    Teacher(string n) : name(n) {}
+};
+
+class Class {
+public:
+    string name;
+
+    Class(string n) : name(n) {}
+};
+
+class School {
+private:
+    vector<Student> students;
+    vector<Teacher> teachers;
+    vector<Class> classes;
+
+public:
+    void addStudent(const Student& student) {
+        students.push_back(student);
+    }
+
+    void removeStudent(const string& name) {
+        for (auto it = students.begin(); it != students.end(); ++it) {
+            if (it->name == name) {
+                students.erase(it);
+                break;
+            }
+        }
+    }
+
+    void addTeacher(const Teacher& teacher) {
+        teachers.push_back(teacher);
+    }
+
+    void removeTeacher(const string& name) {
+        for (auto it = teachers.begin(); it != teachers.end(); ++it) {
+            if (it->name == name) {
+                teachers.erase(it);
+                break;
+            }
+        }
+    }
+
+    void createClass(const Class& newClass) {
+        classes.push_back(newClass);
+    }
+};
+
+int main() {
+    School school;
+    Student student1("John Doe");
+    Student student2("Jane Smith");
+    Teacher teacher1("Mr. Johnson");
+    Teacher teacher2("Ms. Brown");
+    Class class1("Math");
+    Class class2("Science");
+
+    school.addStudent(student1);
+    school.addStudent(student2);
+    school.addTeacher(teacher1);
+    school.addTeacher(teacher2);
+    school.createClass(class1);
+    school.createClass(class2);
+
+    // Example of removing a student
+    school.removeStudent("John Doe");
+
+    return 0;
+}
+`,
+                output: `NO OUTPUT`,
+            },{
+                name: '15. Write a C++ program to create a class called "MusicLibrary" with a collection of songs and methods to add and remove songs, and to play a random song.',
+                code: `#include <iostream>
+#include <string>
+#include <vector>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+
+class Song {
+public:
+    string title;
+    string artist;
+
+    Song(string t, string a) : title(t), artist(a) {}
+};
+
+class MusicLibrary {
+private:
+    vector<Song> songs;
+
+public:
+    void addSong(const Song& song) {
+        songs.push_back(song);
+    }
+
+    void removeSong(const string& title) {
+        for (auto it = songs.begin(); it != songs.end(); ++it) {
+            if (it->title == title) {
+                songs.erase(it);
+                break;
+            }
+        }
+    }
+
+    void playRandomSong() {
+        if (songs.empty()) {
+            cout << "No songs in the library." << endl;
+            return;
+        }
+
+        srand(time(nullptr));
+        int randomIndex = rand() % songs.size();
+        cout << "Playing: " << songs[randomIndex].title << " by " << songs[randomIndex].artist << endl;
+    }
+};
+
+int main() {
+    MusicLibrary musicLibrary;
+    Song song1("Shape of You", "Ed Sheeran");
+    Song song2("Someone Like You", "Adele");
+    Song song3("Closer", "The Chainsmokers");
+
+    musicLibrary.addSong(song1);
+    musicLibrary.addSong(song2);
+    musicLibrary.addSong(song3);
+
+    musicLibrary.playRandomSong();
+
+    cout << "Removing song: Closer" << endl;
+    musicLibrary.removeSong("Closer");
+
+    musicLibrary.playRandomSong();
+
+    return 0;
+}
+`,
+                output: `Playing: Someone Like You by Adele
+Removing song: Closer
+Playing: Shape of You by Ed Sheeran
+`,
+            },{
+                name: '1. Define a class Complex to represent complex numbers. Overload the + operator to add two complex numbers.',
+                code: `#include <iostream>
+using namespace std;
+
+class Complex {
+private:
+    double real;
+    double imaginary;
+
+public:
+    Complex(double r = 0.0, double i = 0.0) : real(r), imaginary(i) {}
+
+    Complex operator+(const Complex& other) const {
+        return Complex(real + other.real, imaginary + other.imaginary);
+    }
+
+    void display() const {
+        cout << real << " + " << imaginary << "i";
+    }
+};
+
+int main() {
+    Complex c1(2.5, 3.5);
+    Complex c2(1.2, 4.8);
+
+    Complex sum = c1 + c2;
+
+    cout << "Sum: ";
+    sum.display();
+
+    return 0;
+}
+`,
+                output: `Sum: 3.7 + 8.3i`,
+            },{
+                name: '2. Create a class Fraction to represent fractions. Overload the + operator to add two fractions.',
+                code: `#include <iostream>
+using namespace std;
+
+class Fraction {
+private:
+    int numerator;
+    int denominator;
+
+public:
+    Fraction(int n = 0, int d = 1) : numerator(n), denominator(d) {}
+
+    Fraction operator+(const Fraction& other) const {
+        int newNumerator = numerator * other.denominator + other.numerator * denominator;
+        int newDenominator = denominator * other.denominator;
+        return Fraction(newNumerator, newDenominator);
+    }
+
+    void display() const {
+        cout << numerator << "/" << denominator;
+    }
+};
+
+int main() {
+    Fraction f1(1, 2);
+    Fraction f2(1, 3);
+
+    Fraction sum = f1 + f2;
+
+    cout << "Sum: ";
+    sum.display();
+
+    return 0;
+}
+`,
+                output: `Sum: 5/6`,
+            },{
+                name: '3. Define a class Matrix to represent matrices. Overload the * operator to multiply two matrices.',
+                code: `#include <iostream>
+#include <vector>
+using namespace std;
+
+class Matrix {
+private:
+    vector<vector<int>> data;
+    int rows;
+    int cols;
+
+public:
+    Matrix(int r, int c) : rows(r), cols(c) {
+        data.resize(rows, vector<int>(cols, 0));
+    }
+
+    int& operator()(int r, int c) {
+        return data[r][c];
+    }
+
+    Matrix operator*(const Matrix& other) const {
+        if (cols != other.rows) {
+            cout << "Error: Matrices cannot be multiplied. Invalid dimensions." << endl;
+            return Matrix(0, 0);
+        }
+
+        Matrix result(rows, other.cols);
+
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < other.cols; ++j) {
+                for (int k = 0; k < cols; ++k) {
+                    result(i, j) += data[i][k] * other(k, j);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    void display() const {
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                cout << data[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    Matrix A(2, 3);
+    A(0, 0) = 1; A(0, 1) = 2; A(0, 2) = 3;
+    A(1, 0) = 4; A(1, 1) = 5; A(1, 2) = 6;
+
+    Matrix B(3, 2);
+    B(0, 0) = 7; B(0, 1) = 8;
+    B(1, 0) = 9; B(1, 1) = 10;
+    B(2, 0) = 11; B(2, 1) = 12;
+
+    Matrix C = A * B;
+
+    cout << "Matrix A:" << endl;
+    A.display();
+
+    cout << "\nMatrix B:" << endl;
+    B.display();
+
+    cout << "\nMatrix A * B:" << endl;
+    C.display();
+
+    return 0;
+}
+`,
+                output: `Matrix A:
+1 2 3 
+4 5 6 
+
+Matrix B:
+7 8 
+9 10 
+11 12 
+
+Matrix A * B:
+58 64 
+139 154 
+`,
+            },{
+                name: '4. Implement a class String to represent strings. Overload the + operator to concatenate two strings',
+                code: `#include <iostream>
+#include <cstring>
+using namespace std;
+
+class String {
+private:
+    char* str;
+
+public:
+    String(const char* s = "") {
+        str = new char[strlen(s) + 1];
+        strcpy(str, s);
+    }
+
+    String(const String& other) {
+        str = new char[strlen(other.str) + 1];
+        strcpy(str, other.str);
+    }
+
+    ~String() {
+        delete[] str;
+    }
+
+    String operator+(const String& other) const {
+        char* newStr = new char[strlen(str) + strlen(other.str) + 1];
+        strcpy(newStr, str);
+        strcat(newStr, other.str);
+        return String(newStr);
+    }
+
+    void display() const {
+        cout << str;
+    }
+};
+
+int main() {
+    String s1("Hello, ");
+    String s2("world!");
+
+    String s3 = s1 + s2;
+
+    s3.display();
+
+    return 0;
+}
+`,
+                output: `Hello, world!`,
+            },{
+                name: '5. Define a class Date to represent dates. Overload the < operator to compare two dates.',
+                code: `#include <iostream>
+using namespace std;
+
+class Date {
+private:
+    int day;
+    int month;
+    int year;
+
+public:
+    Date(int d, int m, int y) : day(d), month(m), year(y) {}
+
+    bool operator<(const Date& other) const {
+        if (year < other.year) {
+            return true;
+        } else if (year > other.year) {
+            return false;
+        } else {
+            if (month < other.month) {
+                return true;
+            } else if (month > other.month) {
+                return false;
+            } else {
+                return day < other.day;
+            }
+        }
+    }
+};
+
+int main() {
+    Date d1(1, 1, 2020);
+    Date d2(1, 1, 2021);
+
+    if (d1 < d2) {
+        cout << "Date 1 is before Date 2" << endl;
+    } else {
+        cout << "Date 1 is not before Date 2" << endl;
+    }
+
+    return 0;
+}
+`,
+                output: `Date 1 is before Date 2`,
+            },{
+                name: '1. Program to copy all elements of one array into another array',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    const int SIZE = 5;
+    int arr1[SIZE] = {1, 2, 3, 4, 5};
+    int arr2[SIZE];
+
+    // Copy elements from arr1 to arr2
+    for (int i = 0; i < SIZE; ++i) {
+        arr2[i] = arr1[i];
+    }
+
+    // Print elements of arr2
+    cout << "Elements of arr2 after copying:" << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr2[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+`,
+                output: `Elements of arr2 after copying:
+1 2 3 4 5`,
+            },{
+                name: '2. Program to find the frequency of each element in the array',
+                code: `#include <iostream>
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
+int main() {
+    const int SIZE = 10;
+    int arr[SIZE] = {1, 2, 3, 2, 1, 2, 3, 4, 1, 5};
+
+    // Create a map to store the frequency of each element
+    unordered_map<int, int> freqMap;
+
+    // Count the frequency of each element
+    for (int i = 0; i < SIZE; ++i) {
+        freqMap[arr[i]]++;
+    }
+
+    // Print the frequency of each element
+    cout << "Frequency of each element:" << endl;
+    for (const auto& pair : freqMap) {
+        cout << pair.first << ": " << pair.second << endl;
+    }
+
+    return 0;
+}
+`,
+                output: `Frequency of each element:
+1: 3
+2: 3
+3: 2
+4: 1
+5: 1
+`,
+            },{
+                name: '3. Program to left rotate the elements of an array',
+                code: `#include <iostream>
+using namespace std;
+
+void leftRotate(int arr[], int size, int k) {
+    int temp[k];
+    for (int i = 0; i < k; ++i) {
+        temp[i] = arr[i];
+    }
+
+    for (int i = k; i < size; ++i) {
+        arr[i - k] = arr[i];
+    }
+
+    for (int i = 0; i < k; ++i) {
+        arr[size - k + i] = temp[i];
+    }
+}
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {1, 2, 3, 4, 5};
+    int k = 2; // Number of positions to rotate
+
+    cout << "Original array:" << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    leftRotate(arr, SIZE, k);
+
+    cout << "Array after left rotation:" << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+`,
+                output: `Original array:
+1 2 3 4 5 
+Array after left rotation:
+3 4 5 1 2 
+`,
+            },{
+                name: '4. Program to print the duplicate elements of an array',
+                code: `#include <iostream>
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
+void printDuplicates(int arr[], int size) {
+    unordered_map<int, int> freqMap;
+
+    // Count the frequency of each element
+    for (int i = 0; i < size; ++i) {
+        freqMap[arr[i]]++;
+    }
+
+    // Print duplicate elements
+    bool foundDuplicate = false;
+    cout << "Duplicate elements: ";
+    for (const auto& pair : freqMap) {
+        if (pair.second > 1) {
+            cout << pair.first << " ";
+            foundDuplicate = true;
+        }
+    }
+
+    if (!foundDuplicate) {
+        cout << "None";
+    }
+
+    cout << endl;
+}
+
+int main() {
+    const int SIZE = 10;
+    int arr[SIZE] = {1, 2, 3, 2, 1, 2, 3, 4, 1, 5};
+
+    printDuplicates(arr, SIZE);
+
+    return 0;
+}
+`,
+                output: `Duplicate elements: 1 2 3
+`,
+            },{
+                name: '5. Program to print the elements of an array',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {1, 2, 3, 4, 5};
+
+    cout << "Elements of the array:" << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+`,
+                output: `Elements of the array:
+1 2 3 4 5
+`,
+            },{
+                name: '6. Program to print the elements of an array in reverse order',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {1, 2, 3, 4, 5};
+
+    cout << "Elements of the array in reverse order:" << endl;
+    for (int i = SIZE - 1; i >= 0; --i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+`,
+                output: `Elements of the array in reverse order:
+5 4 3 2 1
+`,
+            },{
+                name: '7. Program to print the elements of an array present on even position',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {1, 2, 3, 4, 5};
+
+    cout << "Elements of the array at even positions:" << endl;
+    for (int i = 0; i < SIZE; i += 2) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+`,
+                output: `Elements of the array at even positions:
+1 3 5
+`,
+            },{
+                name: '8. Program to print the elements of an array present on odd position',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {1, 2, 3, 4, 5};
+
+    cout << "Elements of the array at odd positions:" << endl;
+    for (int i = 1; i < SIZE; i += 2) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+`,
+                output: `Elements of the array at odd positions:
+2 4
+`,
+            },{
+                name: '9. Program to print the largest element in an array',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {3, 8, 1, 5, 7};
+
+    int largest = arr[0];
+    for (int i = 1; i < SIZE; ++i) {
+        if (arr[i] > largest) {
+            largest = arr[i];
+        }
+    }
+
+    cout << "Largest element in the array: " << largest << endl;
+
+    return 0;
+}
+`,
+                output: `Largest element in the array: 8
+`,
+            },{
+                name: '10. Program to print the smallest element in an array',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {3, 8, 1, 5, 7};
+
+    int smallest = arr[0];
+    for (int i = 1; i < SIZE; ++i) {
+        if (arr[i] < smallest) {
+            smallest = arr[i];
+        }
+    }
+
+    cout << "Smallest element in the array: " << smallest << endl;
+
+    return 0;
+}
+`,
+                output: `Smallest element in the array: 1
+`,
+            },{
+                name: '11. Program to print the number of elements present in an array',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {1, 2, 3, 4, 5};
+
+    cout << "Number of elements in the array: " << SIZE << endl;
+
+    return 0;
+}
+`,
+                output: `Number of elements in the array: 5
+`,
+            },{
+                name: '12. Program to print the sum of all the items of the array',
+                code: `#include <iostream>
+using namespace std;
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {1, 2, 3, 4, 5};
+
+    int sum = 0;
+    for (int i = 0; i < SIZE; ++i) {
+        sum += arr[i];
+    }
+
+    cout << "Sum of all elements in the array: " << sum << endl;
+
+    return 0;
+}
+`,
+                output: `Sum of all elements in the array: 15
+`,
+            },{
+                name: '13. Program to right rotate the elements of an array',
+                code: `#include <iostream>
+using namespace std;
+
+void rightRotate(int arr[], int size, int k) {
+    int temp[k];
+    for (int i = size - k; i < size; ++i) {
+        temp[i - (size - k)] = arr[i];
+    }
+
+    for (int i = size - k - 1; i >= 0; --i) {
+        arr[i + k] = arr[i];
+    }
+
+    for (int i = 0; i < k; ++i) {
+        arr[i] = temp[i];
+    }
+}
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {1, 2, 3, 4, 5};
+    int k = 2; // Number of positions to rotate
+
+    cout << "Original array:" << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    rightRotate(arr, SIZE, k);
+
+    cout << "Array after right rotation:" << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+`,
+                output: `Original array:
+1 2 3 4 5 
+Array after right rotation:
+4 5 1 2 3 
+`,
+            },{
+                name: '14. Program to sort the elements of an array in ascending order',
+                code: `#include <iostream>
+using namespace std;
+
+void bubbleSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; ++i) {
+        for (int j = 0; j < size - i - 1; ++j) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap arr[j] and arr[j + 1]
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {3, 1, 4, 1, 5};
+
+    cout << "Original array:" << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    bubbleSort(arr, SIZE);
+
+    cout << "Array after sorting in ascending order:" << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+`,
+                output: `Original array:
+3 1 4 1 5 
+Array after sorting in ascending order:
+1 1 3 4 5 
+`,
+            },{
+                name: '15. Program to sort the elements of an array in descending order',
+                code: `#include <iostream>
+using namespace std;
+
+void bubbleSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; ++i) {
+        for (int j = 0; j < size - i - 1; ++j) {
+            if (arr[j] < arr[j + 1]) {
+                // Swap arr[j] and arr[j + 1]
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {3, 1, 4, 1, 5};
+
+    cout << "Original array:" << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    bubbleSort(arr, SIZE);
+
+    cout << "Array after sorting in descending order:" << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+`,
+                output: `Original array:
+3 1 4 1 5 
+Array after sorting in descending order:
+5 4 3 1 1 
+`,
+            },{
+                name: '16. Program to Find 3rd Largest Number in an array',
+                code: `#include <iostream>
+#include <climits>
+using namespace std;
+
+int thirdLargest(int arr[], int size) {
+    int first = INT_MIN, second = INT_MIN, third = INT_MIN;
+
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] > first) {
+            third = second;
+            second = first;
+            first = arr[i];
+        } else if (arr[i] > second && arr[i] != first) {
+            third = second;
+            second = arr[i];
+        } else if (arr[i] > third && arr[i] != second && arr[i] != first) {
+            third = arr[i];
+        }
+    }
+
+    return third;
+}
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {3, 1, 4, 1, 5};
+
+    int thirdLargestNumber = thirdLargest(arr, SIZE);
+    cout << "Third largest number in the array: " << thirdLargestNumber << endl;
+
+    return 0;
+}
+`,
+                output: `Third largest number in the array: 3
+`,
+            },{
+                name: '17. Program to Find 2nd Largest Number in an array',
+                code: `#include <iostream>
+#include <climits>
+using namespace std;
+
+int secondLargest(int arr[], int size) {
+    int first = INT_MIN, second = INT_MIN;
+
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] > first) {
+            second = first;
+            first = arr[i];
+        } else if (arr[i] > second && arr[i] != first) {
+            second = arr[i];
+        }
+    }
+
+    return second;
+}
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {3, 1, 4, 1, 5};
+
+    int secondLargestNumber = secondLargest(arr, SIZE);
+    cout << "Second largest number in the array: " << secondLargestNumber << endl;
+
+    return 0;
+}
+`,
+                output: `Second largest number in the array: 4
+`,
+            },{
+                name: '18. Program to Find Largest Number in an array',
+                code: `#include <iostream>
+#include <climits>
+using namespace std;
+
+int largest(int arr[], int size) {
+    int max = INT_MIN;
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {3, 1, 4, 1, 5};
+
+    int largestNumber = largest(arr, SIZE);
+    cout << "Largest number in the array: " << largestNumber << endl;
+
+    return 0;
+}
+`,
+                output: `Largest number in the array: 5
+`,
+            },{
+                name: '19. C++ Program Find 2nd Smallest Number in an array',
+                code: `#include <iostream>
+#include <climits>
+using namespace std;
+
+int secondSmallest(int arr[], int size) {
+    int first = INT_MAX, second = INT_MAX;
+
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] < first) {
+            second = first;
+            first = arr[i];
+        } else if (arr[i] < second && arr[i] != first) {
+            second = arr[i];
+        }
+    }
+
+    return second;
+}
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {3, 1, 4, 1, 5};
+
+    int secondSmallestNumber = secondSmallest(arr, SIZE);
+    cout << "Second smallest number in the array: " << secondSmallestNumber << endl;
+
+    return 0;
+}
+`,
+                output: `Second smallest number in the array: 1
+`,
+            },{
+                name: '20. Program to Find Smallest Number in an array',
+                code: `#include <iostream>
+#include <climits>
+using namespace std;
+
+int smallest(int arr[], int size) {
+    int min = INT_MAX;
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+int main() {
+    const int SIZE = 5;
+    int arr[SIZE] = {3, 1, 4, 1, 5};
+
+    int smallestNumber = smallest(arr, SIZE);
+    cout << "Smallest number in the array: " << smallestNumber << endl;
+
+    return 0;
+}
+`,
+                output: `Smallest number in the array: 1
+`,
+            },
+        ];
+
+        const container = document.getElementById('container');
+
+        codes.forEach((snippet, index) => {
+            const pairDiv = document.createElement('div');
+            pairDiv.className = 'pair';
+            pairDiv.innerHTML = `
+                <div class="code-name">${snippet.name}</div>
+                <div><pre>Code:\n${snippet.code}</pre></div>
+                <div class="output"><pre>Output:\n${snippet.output}</pre></div>
+            `;
+            container.appendChild(pairDiv);
+        });
+    </script>
+</body>
+
+</html>
